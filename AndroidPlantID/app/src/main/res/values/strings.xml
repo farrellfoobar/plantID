@@ -1,0 +1,30 @@
+<resources>
+
+    <!-- Here is where we define strings so they will act as global variables -->
+    <!-- name is how we reference the variable, the text is what we want to appear, right now these are just placeholders -->
+
+    <!-- the naming convention for app_name is different than the rest because the template looks for app_name by default -->
+
+    <string name="app_name">PlantID</string>
+
+    <string name="welcomeText">Welcome to the PlantID app!</string>
+
+    <string name="q1text">What kind of plant is it?</string>
+    <string name="q1CheckButtonOption1">Tree</string>
+    <string name="q1CheckButtonOption2">Grass</string>
+    <string name="q1CheckButtonOption3">Shrub</string>
+    <string name="q1CheckButtonOption4">Succulent</string>
+    <string name="q1CheckButtonOption5">Other/Flowering</string> <!-- this is the section for forb but I figured noone would know what a "Forb" is -->
+
+    <string name="q2text">Does it have a flower?</string>
+
+    <string name="q3text">What should I ask next?</string>
+
+    <string name="q4text">idk?</string>
+
+    <string name="q5text">halp?</string>
+    <string name="title_activity_question_template">questionTemplate</string>
+    <string name="title_activity_plant_group_question">plantGroupQuestion</string>
+    <string name="title_activity_plant_form">plantFormActivity</string>
+
+</resources>

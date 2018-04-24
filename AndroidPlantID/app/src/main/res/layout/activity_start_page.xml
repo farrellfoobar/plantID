@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- when naming buttons and giving titles try to define a string in the values > strings.xml so that we can be consistent
+     In making the UI you can change anything about this page so long as
+     1) there is a next button that calls respondToNextButton i.e. the button has android:onClick="respondToNextButton" (and maybe a previous button that calls respondToPrevButton)
+     2) that when the user answers a question the respondToButton method is called i.e. android:onClick="respondToButton"
+     3) that each button has a unique id within the xml file i.e. no two button have the same android:id ( and the names should indicate the user's choice, which makes the backend easier)
+-->
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StartPage">
+
+    <!-- This is how a button is defined. When the button is pressed the method with the name "android:onClick" in MainActivity.java is called  -->
+    <Button
+        android:id="@+id/next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="Next"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="respondToNextButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="52dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/welcomeText"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
