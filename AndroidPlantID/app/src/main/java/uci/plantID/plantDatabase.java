@@ -30,8 +30,6 @@ public class plantDatabase
     public plant[] getGreatestMatch( plant query, int numToBeRanked)
     {
         int startLocation = Collections.binarySearch( plants, query );
-
-
         return new plant[] {};  //placeholder
     }
 

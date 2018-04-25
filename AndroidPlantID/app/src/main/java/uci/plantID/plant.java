@@ -12,13 +12,12 @@ import java.util.Arrays;
 import java.util.List;
 import org.json.*;
 
-//TODO: Work on plantDatabase and if necessary add and implement writeToJSON and readFromJSON methods
 public class plant implements Comparable<plant>
 {
 
     //to keep things consistent I simply took the object variable and added valid to the front and s to the end, so there are some weird spellings
     public static final List<String> validPlantGroups = Arrays.asList( "Tree", "Grass", "Shrub", "Forb", "Succulent" );
-    public static final List<String> validLeafShapes = Arrays.asList("Simple Leaf", "Pinnately Lobed", "Palmately Lobed", "Deeply 3-lobed", "Compound Leaf");
+    public static final List<String> validLeafTypes = Arrays.asList("Simple Leaf", "Pinnately Lobed", "Palmately Lobed", "Deeply 3-lobed", "Compound Leaf");
     public static final List<String> validLeafArrangements = Arrays.asList("Alternate", "Opposite", "Bundled", "Whorled", "Roaddte");
     public static final List<String> validGrowthForms = Arrays.asList("Prostrate", "Decumben", "Ascending", "Erect", "Mat-forming", "Clump-forming", "Roaddte");
     public static final List<String> validFlowerColors = Arrays.asList("White", "Yellow", "Red", "Orange", "Blue", "Purple", "Green");
@@ -27,14 +26,20 @@ public class plant implements Comparable<plant>
     private String scientificName;
     private String commonName;
     private List<String> plantGroup;
-    private List<String> leafShape;
+    private List<String> leafType;
     private List<String> leafArrangement;
     private List<String> growthForm;
     private List<String> flowerColor;
     private List<String> flowerSymetry;
 
-    public plant( String scientificName, String commonName, String plantGroup, String growthForm, String flowerSymetry, String flowerColor,String leafArrangment, String leafShape )
+    public plant( String scientificName, String commonName, String plantGroup, String growthForm, String flowerSymetry, String flowerColor,String leafArrangment, String leafType)
     {
+        this.plantGroup         = new ArrayList();
+        this.leafType           = new ArrayList();
+        this.leafArrangement    = new ArrayList();
+        this.growthForm         = new ArrayList();
+        this.flowerColor        = new ArrayList();
+        this.flowerSymetry      = new ArrayList();
         this.setScientificName( scientificName );
         this.setCommonName( commonName );
         this.addPlantGroup( plantGroup );
@@ -42,7 +47,7 @@ public class plant implements Comparable<plant>
         this.addFlowerSymetry( flowerSymetry );
         this.addFlowerColor( flowerColor );
         this.addLeafArrangement( leafArrangment );
-        this.addLeafShape( leafShape );
+        this.addLeafType( leafType);
     }
 
     //This default constructor exists almost exclusively to allow us to build the queryPlant, it might not be wise to allow empty plants into the database
@@ -51,21 +56,7 @@ public class plant implements Comparable<plant>
 
     }
 
-    //we dont explicitly need to throw ClassCastException here but I was debating adding a try catch and rethrow with more information
-    //in the future we might want to handle the error differently
-    public plant( String JSONlocation ) throws org.json.JSONException, ClassCastException
-    {
-        JSONObject in = new JSONObject( JSONlocation );
-
-        this.plantGroup         = (List<String>) in.get("plantGroup");
-        this.leafArrangement    = (List<String>) in.get("leafArrangement");
-        this.leafShape          = (List<String>) in.get("leafShape");
-        this.growthForm         = (List<String>) in.get("growthForm");
-        this.flowerColor        = (List<String>) in.get("flowerColor");
-        this.flowerSymetry      = (List<String>) in.get("flowerSymetry");
-    }
-
-    // The scientific names should be unique
+    /* TODO: This isnt a very good compareTo method for out purposes, because we would like a plant that is close to another plant (in the arraylist) to be similar*/
     @Override
     public int compareTo( plant p )
     {
@@ -207,25 +198,25 @@ public class plant implements Comparable<plant>
         return this.leafArrangement;
     }
 
-    public void addLeafShape( String leafShape )
+    public void addLeafType( String leafType )
     {
-        if( !validLeafShapes.contains(  leafShape ) )
+        if( !validLeafTypes.contains(  leafType ) )
             throw new IllegalArgumentException();
 
-        this.leafShape.add(leafShape);
+        this.leafType.add( leafType );
     }
 
-    public void removeLeafShape( String leafShape )
+    public void removeLeafType( String leafType )
     {
-        if( !this.leafShape.contains(  leafShape ) )
+        if( !this.validLeafTypes.contains(  leafType ) )
             throw new IllegalArgumentException();
 
-        this.leafShape.remove(leafShape);
+        this.leafType.remove(leafType);
     }
 
     public List<String> getleafShape()
     {
-        return this.leafShape;
+        return this.leafType;
     }
 
 }

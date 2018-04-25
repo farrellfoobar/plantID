@@ -19,7 +19,6 @@ public class StartPage extends AppCompatActivity
     };
     //I havent gotten to asking if there is a flower and then conditionally asking the next two questions
 
-    //TODO: DONE
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -28,7 +27,6 @@ public class StartPage extends AppCompatActivity
     }
 
     //this method is called when the next button on the activity_main page is pressed, it must take View view as a parameter, and view give access to certain ui elements
-    //TODO: DONE
     public void respondToNextButton(View view)
     {
         viewTracker++;
