@@ -33,13 +33,10 @@ public class StartPage extends AppCompatActivity
             db = new plantDatabase( new InputStreamReader( this.getAssets().open("plants.JSON") ));
         }catch( Exception e )
         {
-            Log.d( "!!!!!",  e.getMessage() );
+            Log.d( "----ERROR----",  e.getMessage() );
         };
 
-        db.getPlant( "Acmispon glaber " );
-
-
-        Log.d("", "!!!!!" + db.getPlant( "Acmispon glaber " ).getCommonName());
+        Log.d("", "OUT" + db.getPlant( "Acmispon glaber " ).getCommonName());
 
     }
 

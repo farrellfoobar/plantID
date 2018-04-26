@@ -33,28 +33,28 @@ public class plantDatabase extends Activity
     TODO: have this method parse the JSON and fill in the plants Arraylist Accordingly. */
     public plantDatabase( InputStreamReader in ) throws IllegalArgumentException, java.io.FileNotFoundException, java.io.IOException, org.json.simple.parser.ParseException, org.json.JSONException
     {
+        plants = new ArrayList<>();
         JSONParser parser = new JSONParser();
-        System.out.println();
         JSONArray plantArray = (JSONArray) parser.parse( in );
-
         JSONArray attributeArrayJSON;
         String [] attributeArray = new String[ NUM_ATTRIB ];
 
-/*
-        for( int i = 0; i < plantArray.length(); i++)
+
+        for( int i = 0; i < plantArray.size(); i++)
         {
             //Cast the JSONobject to a JSON Array (the array that represents a specific plant)
             attributeArrayJSON = ((JSONArray) plantArray.get(i) );
 
-            if( attributeArrayJSON.length() != NUM_ATTRIB )
+            if( attributeArrayJSON.size() != NUM_ATTRIB )
                 throw new IllegalArgumentException();
 
-            for( int j = 0; i < NUM_ATTRIB; j++)
+            for( int j = 0; j < NUM_ATTRIB; j++)
                 attributeArray[i] = (String) attributeArrayJSON.get(j);
 
             plants.add( new plant( attributeArray ) );
         }
-*/
+
+
     }
 
     /*
