@@ -3,20 +3,20 @@ package uci.plantID;
 import android.app.Activity;
 import android.content.Context;
 
-import org.json.JSONArray;
+import org.json.*;
 import org.json.simple.parser.JSONParser;
-
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collections;
+
+import static uci.plantID.plant.NUM_ATTRIB;
 
 //TODO: Implement saveToJSON and a constructor which reads from JSON
 public class plantDatabase extends Activity
 {
     private ArrayList<plant> plants;
     final private String location = "plantDB.JSON";
-    final int NUM_ATTRIB = 8;   //6 attributes + scientific name and common name
 
     //NOTE: If the writing of this database is made easier by implementing some kind of writeToJSON() and readFromJSON() method for the plant object feel free to do that
 
@@ -28,27 +28,27 @@ public class plantDatabase extends Activity
     After the method is complete the arraylist must be sorted. The arraylist will be sorted when it is saved to disk, so unless the parsing of json messes with
     the sorting, the arraylist should not need to be resorted.
     TODO: have this method parse the JSON and fill in the plants Arraylist Accordingly. */
-    public plantDatabase( String location)
+    public plantDatabase( String location) throws IllegalArgumentException, java.io.FileNotFoundException, java.io.IOException, org.json.simple.parser.ParseException, org.json.JSONException
     {
-        File f = new File( location );
-        try
-        {
-            JSONParser parser = new JSONParser();
-            JSONArray a = (JSONArray) parser.parse(new FileReader(location));
-            String [] plantBuilder = new String[NUM_ATTRIB];
+        JSONParser jsonParser = new JSONParser();
+        JSONObject jsonObject = jsonParser.parse( this.getAssets().open("plants.JSON") );
+        //JSONArray plantArray = (JSONArray) parser.parse( );
+        //JSONArray plantArray = (JSONArray) parser.parse(new FileReader(location));
+        JSONArray attributeArrayJSON;
+        String [] attributeArray = new String[ NUM_ATTRIB ];
 
-            for( int i = 0; i < a.length(); i++)
-            {
-                for( int j = 0; j < NUM_ATTRIB; j++)
-                {
-                    //this is a nasty line: we are casting JSONobject to JSON array, getting the Jth string in that array and setting plantBuilder[j] to it;
-                    plantBuilder[j] = (String) ( (JSONArray) a.get(i) ).get(j);
-                }
-            }
-        }
-        catch( Exception e)
+        for( int i = 0; i < plantArray.length(); i++)
         {
+            //Cast the JSONobject to a JSON Array (the array that represents a specific plant)
+            attributeArrayJSON = ((JSONArray) plantArray.get(i) );
 
+            if( attributeArrayJSON.length() != NUM_ATTRIB )
+                throw new IllegalArgumentException();
+
+            for( int j = 0; i < NUM_ATTRIB; j++)
+                attributeArray[i] = (String) attributeArrayJSON.get(j);
+
+            plants.add( new plant( attributeArray ) );
         }
     }
 
@@ -58,6 +58,19 @@ public class plantDatabase extends Activity
     {
         int startLocation = Collections.binarySearch( plants, query );
         return new plant[] {};  //placeholder
+    }
+
+    //TODO: This method is for testing
+    public plant getPlant( String scientificName )
+    {
+        plant query = new plant();
+        query.setScientificName( scientificName );
+        int index = Collections.binarySearch( plants, query );
+
+        if( index > -1 )
+            return plants.get(index);
+        else
+            return query;   //query is not in db
     }
 
     /*
