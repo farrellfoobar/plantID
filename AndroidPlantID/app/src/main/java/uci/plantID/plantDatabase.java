@@ -49,7 +49,7 @@ public class plantDatabase extends Activity
                 throw new IllegalArgumentException();
 
             for( int j = 0; j < NUM_ATTRIB; j++)
-                attributeArray[i] = (String) attributeArrayJSON.get(j);
+                attributeArray[j] = (String) attributeArrayJSON.get(j);
 
             plants.add( new plant( attributeArray ) );
         }
