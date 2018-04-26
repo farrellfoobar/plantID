@@ -1,14 +1,22 @@
 package uci.plantID;
 
+import android.app.Activity;
+import android.content.Context;
+
+import org.json.JSONArray;
+import org.json.simple.parser.JSONParser;
+
 import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collections;
 
 //TODO: Implement saveToJSON and a constructor which reads from JSON
-public class plantDatabase
+public class plantDatabase extends Activity
 {
     private ArrayList<plant> plants;
-    final private File location;
+    final private String location = "plantDB.JSON";
+    final int NUM_ATTRIB = 8;   //6 attributes + scientific name and common name
 
     //NOTE: If the writing of this database is made easier by implementing some kind of writeToJSON() and readFromJSON() method for the plant object feel free to do that
 
@@ -22,7 +30,26 @@ public class plantDatabase
     TODO: have this method parse the JSON and fill in the plants Arraylist Accordingly. */
     public plantDatabase( String location)
     {
-        this.location = new File( location );   //this line is just here to prevent "might not have been initialized" compiler error, it might need to be surrounded by a try catch
+        File f = new File( location );
+        try
+        {
+            JSONParser parser = new JSONParser();
+            JSONArray a = (JSONArray) parser.parse(new FileReader(location));
+            String [] plantBuilder = new String[NUM_ATTRIB];
+
+            for( int i = 0; i < a.length(); i++)
+            {
+                for( int j = 0; j < NUM_ATTRIB; j++)
+                {
+                    //this is a nasty line: we are casting JSONobject to JSON array, getting the Jth string in that array and setting plantBuilder[j] to it;
+                    plantBuilder[j] = (String) ( (JSONArray) a.get(i) ).get(j);
+                }
+            }
+        }
+        catch( Exception e)
+        {
+
+        }
     }
 
     /*

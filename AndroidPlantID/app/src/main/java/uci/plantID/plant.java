@@ -32,6 +32,8 @@ public class plant implements Comparable<plant>
     private List<String> flowerColor;
     private List<String> flowerSymetry;
 
+    //TODO: This method needs to be able to parse a string with a comma in it and split it into multiple strings and add each
+    //(This need to be done to make it compatable with JSON parsing in plantBD)
     public plant( String scientificName, String commonName, String plantGroup, String growthForm, String flowerSymetry, String flowerColor,String leafArrangment, String leafType)
     {
         this.plantGroup         = new ArrayList();
