@@ -2,7 +2,10 @@ package uci.plantID;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+
+import java.io.InputStreamReader;
 
 public class StartPage extends AppCompatActivity
 {
@@ -24,6 +27,20 @@ public class StartPage extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_page);
+
+        plantDatabase db = null;
+        try {
+            db = new plantDatabase( new InputStreamReader( this.getAssets().open("plants.JSON") ));
+        }catch( Exception e )
+        {
+            Log.d( "!!!!!",  e.getMessage() );
+        };
+
+        db.getPlant( "Acmispon glaber " );
+
+
+        Log.d("", "!!!!!" + db.getPlant( "Acmispon glaber " ).getCommonName());
+
     }
 
     //this method is called when the next button on the activity_main page is pressed, it must take View view as a parameter, and view give access to certain ui elements

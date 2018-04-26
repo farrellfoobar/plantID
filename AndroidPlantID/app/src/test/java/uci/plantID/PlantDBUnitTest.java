@@ -14,7 +14,7 @@ public class PlantDBUnitTest
     @Test
     public void canCreateDB() throws Exception
     {
-        plantDatabase d = new plantDatabase("plants.JSON");
+        plantDatabase d = new plantDatabase();
         plant p = new plant( "Acmispon glaber", "Deerweed", "shrub", "pinnate", "opposite", "erect", "yellow", "bilateral" );
 
         assert d.getPlant("Acmispon glaber" ).equals(p);

@@ -16,6 +16,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    //from http://tools.android.com/tech-docs/unit-testing-support#TOC-Method-...-not-mocked.-
+    //I dont know why but it works
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 dependencies {

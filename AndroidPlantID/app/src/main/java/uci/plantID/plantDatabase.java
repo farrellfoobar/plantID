@@ -2,11 +2,14 @@ package uci.plantID;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.AssetManager;
 
-import org.json.*;
+import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -28,15 +31,16 @@ public class plantDatabase extends Activity
     After the method is complete the arraylist must be sorted. The arraylist will be sorted when it is saved to disk, so unless the parsing of json messes with
     the sorting, the arraylist should not need to be resorted.
     TODO: have this method parse the JSON and fill in the plants Arraylist Accordingly. */
-    public plantDatabase( String location) throws IllegalArgumentException, java.io.FileNotFoundException, java.io.IOException, org.json.simple.parser.ParseException, org.json.JSONException
+    public plantDatabase( InputStreamReader in ) throws IllegalArgumentException, java.io.FileNotFoundException, java.io.IOException, org.json.simple.parser.ParseException, org.json.JSONException
     {
-        JSONParser jsonParser = new JSONParser();
-        JSONObject jsonObject = jsonParser.parse( this.getAssets().open("plants.JSON") );
-        //JSONArray plantArray = (JSONArray) parser.parse( );
-        //JSONArray plantArray = (JSONArray) parser.parse(new FileReader(location));
+        JSONParser parser = new JSONParser();
+        System.out.println();
+        JSONArray plantArray = (JSONArray) parser.parse( in );
+
         JSONArray attributeArrayJSON;
         String [] attributeArray = new String[ NUM_ATTRIB ];
 
+/*
         for( int i = 0; i < plantArray.length(); i++)
         {
             //Cast the JSONobject to a JSON Array (the array that represents a specific plant)
@@ -50,6 +54,7 @@ public class plantDatabase extends Activity
 
             plants.add( new plant( attributeArray ) );
         }
+*/
     }
 
     /*
