@@ -8,21 +8,63 @@
     <string name="app_name">PlantID</string>
 
     <string name="welcomeText">Welcome to the PlantID app!</string>
+    <string name="back">Back</string>
+    <string name="next">Next</string>
+    <string name="home">Home</string>
+    <string name="question_title">Title</string>
+    <string name="progress">Progress</string>
+    <string name="search">Search</string>
+    <string name="app_icon">App Icon</string>
 
-    <string name="q1text">What kind of plant is it?</string>
-    <string name="q1CheckButtonOption1">Tree</string>
-    <string name="q1CheckButtonOption2">Grass</string>
-    <string name="q1CheckButtonOption3">Shrub</string>
-    <string name="q1CheckButtonOption4">Succulent</string>
-    <string name="q1CheckButtonOption5">Other/Flowering</string> <!-- this is the section for forb but I figured noone would know what a "Forb" is -->
+    <string name="query_category">Query Category</string>
 
-    <string name="q2text">Does it have a flower?</string>
 
-    <string name="q3text">What should I ask next?</string>
+    <string name="q1text">Plant Type?</string>
+    <string name="q1CheckButtonOption1">tree</string>
+    <string name="q1CheckButtonOption2">grass</string>
+    <string name="q1CheckButtonOption3">shrub</string>
+    <string name="q1CheckButtonOption4">succulent</string>
+    <string name="q1CheckButtonOption5">other/flowering</string> <!-- this is the section for forb but I figured noone would know what a "Forb" is -->
 
-    <string name="q4text">idk?</string>
+    <string name="q2text">Leaf Shape?</string>
+    <string name="q2CheckButtonOption1">simple</string>
+    <string name="q2CheckButtonOption2">lobe</string>
+    <string name="q2CheckButtonOption3">pinnate</string>
+    <string name="q2CheckButtonOption4">compound/ deeply divided</string>
+    <string name="q2CheckButtonOption5">blade</string>
+    <string name="q2CheckButtonOption6">N/A</string>
 
-    <string name="q5text">halp?</string>
+    <string name="q3text">Leaf Arrangement?</string>
+    <string name="q3CheckButtonOption1">alternate</string>
+    <string name="q3CheckButtonOption2">opposite</string>
+    <string name="q3CheckButtonOption3">bundled</string>
+    <string name="q3CheckButtonOption4">whorled</string>
+    <string name="q3CheckButtonOption5">basal</string>
+    <string name="q3CheckButtonOption6">rosette</string>
+
+    <string name="q4text">Growth Form?</string>
+    <string name="q4CheckButtonOption1">prostate</string>
+    <string name="q4CheckButtonOption2">decumbent</string>
+    <string name="q4CheckButtonOption3">ascending</string>
+    <string name="q4CheckButtonOption4">erect</string>
+    <string name="q4CheckButtonOption5">mat</string>
+    <string name="q4CheckButtonOption6">clump-forming</string>
+    <string name="q4CheckButtonOption7">rosette</string>
+    <string name="q4CheckButtonOption8">basal</string>
+    <string name="q4CheckButtonOption9">vine</string>
+
+    <string name="q5text">Has Flower?</string>
+    <string name="q5CheckButtonOption1">Has a flower</string>
+
+    <string name="q6text">Flower Color?</string>
+
+    <string name="q7text">Flower Symmetry?</string>
+    <string name="q7CheckButtonOption1">radial</string>
+    <string name="q7CheckButtonOption2">bilateral</string>
+    <string name="q7CheckButtonOption3">asymmetrical</string>
+
+
+
     <string name="title_activity_question_template">questionTemplate</string>
     <string name="title_activity_plant_group_question">plantGroupQuestion</string>
     <string name="title_activity_plant_form">plantFormActivity</string>

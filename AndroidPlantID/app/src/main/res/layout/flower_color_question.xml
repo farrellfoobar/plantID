@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/flower_color_template"
+        layout="@layout/common_question"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="71dp"
+        android:layout_height="67dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginRight="37dp"
+        android:layout_marginTop="101dp"
+        android:onClick="respondToButton"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@color/red" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="71dp"
+        android:layout_height="67dp"
+        android:layout_marginBottom="46dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="44dp"
+        android:onClick="respondToButton"
+
+        app:layout_constraintBottom_toTopOf="@+id/imageButton5"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton9"
+        app:layout_constraintStart_toEndOf="@+id/imageButton7"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton"
+        app:srcCompat="@color/blue" />
+
+    <ImageButton
+        android:id="@+id/imageButton5"
+        android:layout_width="71dp"
+        android:layout_height="67dp"
+        android:layout_marginBottom="119dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginStart="35dp"
+        android:onClick="respondToButton"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton6"
+        app:layout_constraintStart_toEndOf="@+id/imageButton8"
+        app:srcCompat="@color/pink" />
+
+    <ImageButton
+        android:id="@+id/imageButton4"
+        android:layout_width="71dp"
+        android:layout_height="67dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="101dp"
+        android:onClick="respondToButton"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:color/white" />
+
+    <ImageButton
+        android:id="@+id/imageButton6"
+        android:layout_width="71dp"
+        android:layout_height="67dp"
+        android:layout_marginBottom="119dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginRight="37dp"
+        android:onClick="respondToButton"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_delete" />
+
+    <ImageButton
+        android:id="@+id/imageButton9"
+        android:layout_width="71dp"
+        android:layout_height="67dp"
+        android:layout_marginBottom="46dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginRight="37dp"
+        android:layout_marginTop="44dp"
+        android:onClick="respondToButton"
+
+        app:layout_constraintBottom_toTopOf="@+id/imageButton6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton3"
+        app:srcCompat="@color/purple" />
+
+    <ImageButton
+        android:id="@+id/imageButton8"
+        android:layout_width="71dp"
+        android:layout_height="67dp"
+        android:layout_marginBottom="119dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginStart="39dp"
+        android:onClick="respondToButton"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@color/green" />
+
+    <ImageButton
+        android:id="@+id/imageButton7"
+        android:layout_width="71dp"
+        android:layout_height="67dp"
+        android:layout_marginBottom="46dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="44dp"
+        android:onClick="respondToButton"
+
+        app:layout_constraintBottom_toTopOf="@+id/imageButton8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton4"
+        app:srcCompat="@color/orange" />
+
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="71dp"
+        android:layout_height="67dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="101dp"
+        android:onClick="respondToButton"
+
+        app:layout_constraintEnd_toStartOf="@+id/imageButton3"
+        app:layout_constraintStart_toEndOf="@+id/imageButton4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@color/yellow" />
+
+
+
+</android.support.constraint.ConstraintLayout>
