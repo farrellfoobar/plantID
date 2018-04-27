@@ -2,6 +2,9 @@ package uci.plantID;
 
 import org.junit.Test;
 
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -14,9 +17,14 @@ public class PlantDBUnitTest
     @Test
     public void canCreateDB() throws Exception
     {
-        plantDatabase d = new plantDatabase();
+        String yourLoc = "E:\\AndroidStudioProjects\\";                              //replace as needed
+        String loc = "plantID\\AndroidPlantID\\app\\src\\main\\assets\\plants.JSON"; //leave alone (universal)
+
+        InputStreamReader is = new InputStreamReader( new FileInputStream(yourLoc + loc) );
+        plantDatabase db = new plantDatabase( is );
         plant p = new plant( "Acmispon glaber", "Deerweed", "shrub", "pinnate", "opposite", "erect", "yellow", "bilateral" );
 
-        assert d.getPlant("Acmispon glaber" ).equals(p);
+        assert db.getPlant("Acmispon glaber").equals(p);
+        assert db.getPlant("Acmispon glaber").getleafType().equals(p.getleafType());
     }
 }

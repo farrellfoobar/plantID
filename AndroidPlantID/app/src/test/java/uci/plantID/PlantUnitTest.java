@@ -2,6 +2,9 @@ package uci.plantID;
 
 import org.junit.Test;
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 import static org.junit.Assert.assertEquals;
 
 /**
