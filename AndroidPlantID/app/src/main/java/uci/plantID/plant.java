@@ -1,6 +1,7 @@
 package uci.plantID;
 
 import android.util.JsonWriter;
+import android.util.Log;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -28,12 +29,12 @@ public class plant implements Comparable<plant>
 
     private String scientificName;
     private String commonName;
-    private List<String> plantGroup;
-    private List<String> leafType;
-    private List<String> leafArrangement;
-    private List<String> growthForm;
-    private List<String> flowerColor;
-    private List<String> flowerSymetry;
+    private ArrayList<String> plantGroup;
+    private ArrayList<String> leafType;
+    private ArrayList<String> leafArrangement;
+    private ArrayList<String> growthForm;
+    private ArrayList<String> flowerColor;
+    private ArrayList<String> flowerSymetry;
 
     //TODO: This method needs to be able to parse a string with a comma in it and split it into multiple strings and add each
     //(This need to be done to make it compatable with JSON parsing in plantBD)
@@ -89,6 +90,33 @@ public class plant implements Comparable<plant>
         return this.scientificName.compareTo( p.scientificName );
     }
 
+    /*TODO: implement getMatch
+      This method returns a int from 0 to 100 representing how similar this plant is to p
+      If it is certain that this plant will have a match lower than thresh, return the current match, without evaluating any further
+      a.getMatch(b, 0) = b.getMatch(a, 0)
+    */
+    public double getMatch( plant p, double thresh  )
+    {
+        double match = 1.0;
+        int i = 0;
+        while( match*100 > thresh && i < NUM_ATTRIB - 2)    //-2 for common name and sci name
+        {
+            double intersectionSize = 0;
+            double uninionSize = this.getList(i).size() + p.getList(i).size();
+            for( String s : this.getList(i) )
+            {
+                if( p.getList(i).contains(s) )
+                    intersectionSize++;
+
+            }
+
+            match -=  1.0/(NUM_ATTRIB-2) * (1-(intersectionSize / (uninionSize-intersectionSize)) );
+            i++;
+        }
+
+        return match*100;
+    }
+
     @Override
     public boolean equals( Object p )
     {
@@ -96,6 +124,39 @@ public class plant implements Comparable<plant>
             return (this.compareTo( (plant) p) == 0);
         else
             return false;
+    }
+
+    //This is just a utility method
+    public ArrayList<String> getList( int i)
+    {
+        if( i > NUM_ATTRIB-2 || i < 0)
+            throw new IllegalArgumentException("The " + i + "th attributes doesnt exist");
+
+        ArrayList<String> out = null;
+
+        switch ( i )
+        {
+            case 0:
+                out =this.getPlantGroup();
+                break;
+            case 1:
+                out =this.getleafType();
+                break;
+            case 2:
+                out =this.getLeafArrangements();
+                break;
+            case 3:
+                out =this.getGrowthForm();
+                break;
+            case 4:
+                out =this.getFlowerColor();
+                break;
+            case 5:
+                out =this.getFlowerSymetry();
+                break;
+        }
+
+        return out;
     }
 
     //adders, removers and getters:
@@ -141,7 +202,7 @@ public class plant implements Comparable<plant>
         this.plantGroup.remove(plantGroup);
     }
 
-    public List<String> getPlantGroup()
+    public ArrayList<String> getPlantGroup()
     {
         return this.plantGroup;
     }
@@ -168,7 +229,7 @@ public class plant implements Comparable<plant>
         this.growthForm.remove(growthForm);
     }
 
-    public List<String> getGrowthForm()
+    public ArrayList<String> getGrowthForm()
     {
         return this.growthForm;
     }
@@ -195,7 +256,7 @@ public class plant implements Comparable<plant>
         this.flowerSymetry.remove(flowerSymetry);
     }
 
-    public List<String> getFlowerSymetry()
+    public ArrayList<String> getFlowerSymetry()
     {
         return this.flowerSymetry;
     }
@@ -222,7 +283,7 @@ public class plant implements Comparable<plant>
         this.flowerColor.remove(flowerColor);
     }
 
-    public List<String> getFlowerColor()
+    public ArrayList<String> getFlowerColor()
     {
         return this.flowerColor;
     }
@@ -249,7 +310,7 @@ public class plant implements Comparable<plant>
         this.leafArrangement.add(leafArrangment);
     }
 
-    public List<String> getLeafArrangements()
+    public ArrayList<String> getLeafArrangements()
     {
         return this.leafArrangement;
     }
@@ -276,7 +337,7 @@ public class plant implements Comparable<plant>
         this.leafType.remove(leafType);
     }
 
-    public List<String> getleafType()
+    public ArrayList<String> getleafType()
     {
         return this.leafType;
     }

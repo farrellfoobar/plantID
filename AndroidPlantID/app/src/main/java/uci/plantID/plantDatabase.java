@@ -12,6 +12,7 @@ import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 import static uci.plantID.plant.NUM_ATTRIB;
@@ -53,9 +54,38 @@ public class plantDatabase extends Activity
     public plant[] getGreatestMatch( plant query, int numToBeRanked)
     {
         int startLocation = Collections.binarySearch( plants, query );
+
+        // -insertionPoint -1 is returned if the exact plant is not there (see java collections documentation)
+        if( startLocation < 0)
+            startLocation = -startLocation +1;
+
+        ArrayList<rankedPlant> ranks = new ArrayList<>(numToBeRanked);
+
+        Collections.fill( ranks, new rankedPlant(null, 0) );
+        ranks.set(0, new rankedPlant( plants.get(startLocation), query.getMatch( plants.get(startLocation), 0 ) ) );
+
+        double currentMatch;
+        double worstTopMatch = ranks.get( numToBeRanked-1 ).getRank();
+        for( int i = startLocation+1; i % startLocation != 0; i++)  //iterate from startlocation to startlocation*2
+        {
+            currentMatch = query.getMatch( plants.get(i), ranks.get( ranks.size()-1 ).getRank() );
+
+            if( currentMatch  > worstTopMatch )
+            {
+                ranks.set( ranks.size()-1, new rankedPlant( plants.get(i), currentMatch ) );
+                Collections.sort(ranks);
+                worstTopMatch = ranks.get( numToBeRanked-1 ).getRank();
+            }
+            else if( currentMatch == worstTopMatch)
+            {
+                ranks.add( new rankedPlant( plants.get(i), currentMatch ) );
+            }
+        }
+
         return new plant[] {};  //placeholder
     }
 
+    //This method is for debugging
     public plant getPlant( String scientificName )
     {
         plant query = new plant();

@@ -1,5 +1,7 @@
 package uci.plantID;
 
+import android.util.Log;
+
 import org.junit.Test;
 
 import java.io.InputStream;
@@ -20,5 +22,19 @@ public class PlantUnitTest
         plant p = new plant( "Acmispon glaber", "Deerweed", "shrub", "pinnate", "opposite", "erect", "yellow", "bilateral" );
         assert( p.getCommonName().equals("Deerweed") );
         assert( p.getPlantGroup().get(0).equals("shrub") );
+    }
+
+    @Test
+    public void canMatchPlants()
+    {
+        plant p1 = new plant( "Acmispon glaber", "Deerweed", "shrub", "pinnate", "opposite", "erect", "yellow", "bilateral" );
+        plant p2 = new plant( "Acmispon glaber", "Deerweed", "forb", "pinnate", "opposite", "erect", "yellow", "bilateral" );
+        plant p3 = new plant( "Centaurea melitensis ", "Malta or Maltese Star-thistle or Tocalote", "forb", "lobed", "basal", "rosette", "yellow", "radial" );
+
+        System.out.println("----DATA----" + "P1 to p2: " + Double.toString( p1.getMatch(p2, 0) ) );
+        System.out.println("----DATA----" + "P2 to p1: " + Double.toString( p2.getMatch(p1, 0) ) );
+        System.out.println("----DATA----" + "P1 to p3: " + Double.toString( p1.getMatch(p3, 0) ) );
+
+        System.out.println( "----DATA----" + "P1 to p3 with thresh: " + Double.toString( p1.getMatch(p3, 83.33) )  );
     }
 }
