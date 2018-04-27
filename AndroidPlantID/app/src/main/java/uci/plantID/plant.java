@@ -17,10 +17,11 @@ public class plant implements Comparable<plant>
 
     //to keep things consistent I simply took the object variable and added valid to the front and s to the end, so there are some weird spellings
     public static final List<String> validPlantGroups = Arrays.asList( "tree", "grass", "shrub", "forb", "succulent" );
-    public static final List<String> validLeafTypes = Arrays.asList("simple", "lobed", "pinnate", "compound/ deeply divided", "blade");
-    public static final List<String> validLeafArrangements = Arrays.asList("alternate", "opposite", "bundled", "whorled", "roaddte");
-    public static final List<String> validGrowthForms = Arrays.asList("prostrate", "decumben", "ascending", "erect", "mat-forming", "clump-forming", "roaddte");
-    public static final List<String> validFlowerColors = Arrays.asList("white", "yellow", "red", "orange", "blue", "purple", "green");
+    //Cylindropuntia prolifera is the only plant with N.A. as its valid leaf form (its a cactus), Im not sure how to handle that, but this works
+    public static final List<String> validLeafTypes = Arrays.asList("simple", "lobed", "pinnate", "compound/ deeply divided", "blade", "N.A.");
+    public static final List<String> validLeafArrangements = Arrays.asList("alternate", "opposite", "bundled", "whorled", "basal", "rosette");
+    public static final List<String> validGrowthForms = Arrays.asList("prostrate", "decumbent", "ascending", "erect", "mat", "clump-forming", "rosette", "basal", "vine");
+    public static final List<String> validFlowerColors = Arrays.asList("white", "yellow", "red", "orange", "blue", "purple", "green", "pink", "N.A.");
     public static final List<String> validFlowerSymetrys = Arrays.asList("radial", "bilateral", "asymmertical");
 
     public static final int NUM_ATTRIB = 8;   //6 attributes + scientific name and common name
@@ -68,12 +69,11 @@ public class plant implements Comparable<plant>
         this.setScientificName(     attribs[0] );
         this.setCommonName(         attribs[1] );
         this.addPlantGroup(         attribs[2].split(", ") );
-        this.addGrowthForm(         attribs[3].split(", ") );
-        this.addFlowerSymetry(      attribs[4].split(", ") );
-        this.addFlowerColor(        attribs[5].split(", ") );
-        this.addLeafArrangement(    attribs[6].split(", ") );
-        this.addLeafType(           attribs[7].split(", ") );
-
+        this.addLeafType(           attribs[3].split(", ") );
+        this.addLeafArrangement(    attribs[4].split(", ") );
+        this.addGrowthForm(         attribs[5].split(", ") );
+        this.addFlowerColor(        attribs[6].split(", ") );
+        this.addFlowerSymetry(      attribs[7].split(", ") );
     }
 
     //This default constructor exists almost exclusively to allow us to build the queryPlant, it might not be wise to allow empty plants into the database
@@ -122,7 +122,7 @@ public class plant implements Comparable<plant>
     public void addPlantGroup( String plantGroup )
     {
         if( !validPlantGroups.contains(  plantGroup ) )
-            throw new IllegalArgumentException("Expected valid input, got " + plantGroup);
+            throw new IllegalArgumentException("Expected valid plant group, got " + plantGroup);
 
         this.plantGroup.add(plantGroup);
     }
@@ -149,7 +149,7 @@ public class plant implements Comparable<plant>
     public void addGrowthForm( String growthForm )
     {
         if( !validGrowthForms.contains(  growthForm ) )
-            throw new IllegalArgumentException("Expected valid input, got " + growthForm);
+            throw new IllegalArgumentException("Expected valid growth form got " + growthForm);
 
         this.growthForm.add(growthForm);
     }
@@ -176,7 +176,7 @@ public class plant implements Comparable<plant>
     public void addFlowerSymetry( String flowerSymetry )
     {
         if( !validFlowerSymetrys.contains(  flowerSymetry ) )
-            throw new IllegalArgumentException("Expected valid input, got " + flowerSymetry);
+            throw new IllegalArgumentException("Expected valid flower symetry, got " + flowerSymetry);
 
         this.flowerSymetry.add(flowerSymetry);
     }
@@ -203,7 +203,7 @@ public class plant implements Comparable<plant>
     public void addFlowerColor( String flowerColor )
     {
         if( !validFlowerColors.contains(  flowerColor ) )
-            throw new IllegalArgumentException("Expected valid input, got " + flowerColor);
+            throw new IllegalArgumentException("Expected valid flower color, got " + flowerColor);
 
         this.flowerColor.add(flowerColor);
     }
@@ -230,7 +230,7 @@ public class plant implements Comparable<plant>
     public void addLeafArrangement( String leafArrangment )
     {
         if( !validLeafArrangements.contains(  leafArrangment ) )
-            throw new IllegalArgumentException("Expected valid input, got " + leafArrangment);
+            throw new IllegalArgumentException("Expected valid leaf arrangement, got " + leafArrangment);
 
         this.leafArrangement.add(leafArrangment);
     }
@@ -257,7 +257,7 @@ public class plant implements Comparable<plant>
     public void addLeafType( String leafType )
     {
         if( !validLeafTypes.contains(  leafType ) )
-            throw new IllegalArgumentException("Expected valid input, got " + leafType);
+            throw new IllegalArgumentException("Expected valid leaf type, got " + leafType);
 
         this.leafType.add( leafType );
     }

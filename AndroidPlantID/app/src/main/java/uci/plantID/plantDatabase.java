@@ -3,6 +3,7 @@ package uci.plantID;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.util.Log;
 
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
@@ -49,7 +50,9 @@ public class plantDatabase extends Activity
                 throw new IllegalArgumentException();
 
             for( int j = 0; j < NUM_ATTRIB; j++)
+            {
                 attributeArray[j] = (String) attributeArrayJSON.get(j);
+            }
 
             plants.add( new plant( attributeArray ) );
         }
