@@ -51,7 +51,8 @@ public class plantDatabase extends Activity
 
     /*
     TODO: look for the best numToBeRanked plants in the database, being sure to stop looking at a particular as soon as it is worst than the wost one on the short list  */
-    public plant[] getGreatestMatch( plant query, int numToBeRanked)
+    //TODO: THIS IS THE METHOD THAT ISNT WORKING
+    public ArrayList<rankedPlant> getGreatestMatch( plant query, int numToBeRanked)
     {
         int startLocation = Collections.binarySearch( plants, query );
 
@@ -59,30 +60,35 @@ public class plantDatabase extends Activity
         if( startLocation < 0)
             startLocation = -startLocation +1;
 
-        ArrayList<rankedPlant> ranks = new ArrayList<>(numToBeRanked);
+        ArrayList<rankedPlant> ranks = new ArrayList<rankedPlant>(numToBeRanked);
 
-        Collections.fill( ranks, new rankedPlant(null, 0) );
+        for(int i = 0; i < numToBeRanked; i++)
+            ranks.add(new rankedPlant(null, 0));
+
         ranks.set(0, new rankedPlant( plants.get(startLocation), query.getMatch( plants.get(startLocation), 0 ) ) );
 
         double currentMatch;
-        double worstTopMatch = ranks.get( numToBeRanked-1 ).getRank();
-        for( int i = startLocation+1; i % startLocation != 0; i++)  //iterate from startlocation to startlocation*2
+        double worstTopMatch = 0;//ranks.get( numToBeRanked-1 ).getRank();
+        //for( int i = startLocation+1; i % startLocation != 0; i++)  //iterate from startlocation to startlocation*2
+        for(int i = 0; i < plants.size(); i++)
         {
-            currentMatch = query.getMatch( plants.get(i), ranks.get( ranks.size()-1 ).getRank() );
-
+            currentMatch = query.getMatch( plants.get(i), worstTopMatch );
+            System.out.println(i);
             if( currentMatch  > worstTopMatch )
             {
+                System.out.println(plants.get(i));
                 ranks.set( ranks.size()-1, new rankedPlant( plants.get(i), currentMatch ) );
                 Collections.sort(ranks);
                 worstTopMatch = ranks.get( numToBeRanked-1 ).getRank();
             }
-            else if( currentMatch == worstTopMatch)
+            /*
+            else if( currentMatch == worstTopMatch) //happens too often maybe issue with thresh
             {
                 ranks.add( new rankedPlant( plants.get(i), currentMatch ) );
-            }
+            } */
         }
 
-        return new plant[] {};  //placeholder
+        return ranks;
     }
 
     //This method is for debugging

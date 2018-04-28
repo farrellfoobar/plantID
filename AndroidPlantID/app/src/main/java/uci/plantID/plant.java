@@ -90,6 +90,19 @@ public class plant implements Comparable<plant>
         return this.scientificName.compareTo( p.scientificName );
     }
 
+    @Override
+    public String toString()
+    {
+        return this.getScientificName() + "\n" +
+                this.getCommonName() + "\n" +
+                this.getPlantGroup() + "\n" +
+                this.getleafType() + "\n" +
+                this.getLeafArrangements() + "\n" +
+                this.getGrowthForm() + "\n" +
+                this.getFlowerColor() + "\n" +
+                this.getFlowerSymetry() + "\n";
+    }
+
     /*TODO: implement getMatch
       This method returns a int from 0 to 100 representing how similar this plant is to p
       If it is certain that this plant will have a match lower than thresh, return the current match, without evaluating any further

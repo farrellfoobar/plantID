@@ -29,8 +29,8 @@
       <file leaf-file-name="plants.JSON" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/assets/plants.JSON">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="21" column="6" lean-forward="false" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
+            <state relative-caret-position="189">
+              <caret line="9" column="92" lean-forward="false" selection-start-line="9" selection-start-column="92" selection-end-line="9" selection-end-column="92" />
               <folding />
             </state>
           </provider>
@@ -39,11 +39,22 @@
       <file leaf-file-name="plantDatabase.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/uci/plantID/plantDatabase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="446">
-              <caret line="80" column="76" lean-forward="false" selection-start-line="80" selection-start-column="76" selection-end-line="80" selection-end-column="76" />
+            <state relative-caret-position="168">
+              <caret line="53" column="48" lean-forward="false" selection-start-line="53" selection-start-column="48" selection-end-line="53" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#2415#2428#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ArrayList.java" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-27/java/util/ArrayList.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="8715">
+              <caret line="451" column="26" lean-forward="false" selection-start-line="451" selection-start-column="26" selection-end-line="451" selection-end-column="26" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -51,7 +62,7 @@
       <file leaf-file-name="rankedPlant.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/uci/plantID/rankedPlant.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="488">
+            <state relative-caret-position="525">
               <caret line="31" column="1" lean-forward="false" selection-start-line="31" selection-start-column="1" selection-end-line="31" selection-end-column="1" />
               <folding>
                 <element signature="e#463#464#0" expanded="true" />
@@ -59,16 +70,6 @@
                 <element signature="e#530#531#0" expanded="true" />
                 <element signature="e#559#560#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="9" column="56" lean-forward="false" selection-start-line="9" selection-start-column="56" selection-end-line="9" selection-end-column="56" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -86,7 +87,7 @@
       <file leaf-file-name="PlantUnitTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/test/java/uci/plantID/PlantUnitTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
+            <state relative-caret-position="630">
               <caret line="37" column="110" lean-forward="false" selection-start-line="37" selection-start-column="110" selection-end-line="37" selection-end-column="110" />
               <folding />
             </state>
@@ -106,8 +107,8 @@
       <file leaf-file-name="PlantDBUnitTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/test/java/uci/plantID/PlantDBUnitTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="488">
-              <caret line="29" column="1" lean-forward="false" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
+            <state relative-caret-position="861">
+              <caret line="47" column="43" lean-forward="false" selection-start-line="47" selection-start-column="43" selection-end-line="47" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -116,21 +117,21 @@
       <file leaf-file-name="plant.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/uci/plantID/plant.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1806">
-              <caret line="124" column="12" lean-forward="false" selection-start-line="124" selection-start-column="12" selection-end-line="124" selection-end-column="12" />
+            <state relative-caret-position="399">
+              <caret line="30" column="30" lean-forward="false" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
               <folding>
                 <element signature="e#4469#4470#0" expanded="true" />
                 <element signature="e#4541#4542#0" expanded="true" />
-                <element signature="e#6642#6643#0" expanded="true" />
-                <element signature="e#6694#6695#0" expanded="true" />
-                <element signature="e#6739#6740#0" expanded="true" />
-                <element signature="e#6781#6782#0" expanded="true" />
-                <element signature="e#6837#6838#0" expanded="true" />
-                <element signature="e#6881#6882#0" expanded="true" />
-                <element signature="e#6922#6923#0" expanded="true" />
-                <element signature="e#6960#6961#0" expanded="true" />
-                <element signature="e#11550#11551#0" expanded="true" />
-                <element signature="e#11586#11587#0" expanded="true" />
+                <element signature="e#7076#7077#0" expanded="true" />
+                <element signature="e#7128#7129#0" expanded="true" />
+                <element signature="e#7173#7174#0" expanded="true" />
+                <element signature="e#7215#7216#0" expanded="true" />
+                <element signature="e#7271#7272#0" expanded="true" />
+                <element signature="e#7315#7316#0" expanded="true" />
+                <element signature="e#7356#7357#0" expanded="true" />
+                <element signature="e#7394#7395#0" expanded="true" />
+                <element signature="e#11984#11985#0" expanded="true" />
+                <element signature="e#12020#12021#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -139,8 +140,8 @@
       <file leaf-file-name="StartPage.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/uci/plantID/StartPage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-42">
-              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+            <state relative-caret-position="567">
+              <caret line="32" column="47" lean-forward="false" selection-start-line="32" selection-start-column="47" selection-end-line="32" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <marker date="1524853807818" expanded="true" signature="1287:1295" ph="{...}" />
@@ -176,6 +177,7 @@
       <find>size</find>
       <find>com.android.application</find>
       <find>split</find>
+      <find>toString</find>
     </findStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -2201,19 +2203,19 @@
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/assets/plants.JSON" />
-        <option value="$PROJECT_DIR$/app/src/test/java/uci/plantID/PlantDBUnitTest.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/uci/plantID/StartPage.java" />
         <option value="$PROJECT_DIR$/app/src/test/java/uci/plantID/PlantUnitTest.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/uci/plantID/plant.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/uci/plantID/rankedPlant.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/uci/plantID/plant.java" />
+        <option value="$PROJECT_DIR$/app/src/test/java/uci/plantID/PlantDBUnitTest.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/uci/plantID/plantDatabase.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1462" />
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="940" />
     <option name="height" value="1038" />
   </component>
   <component name="ProjectView">
@@ -2232,6 +2234,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -2266,6 +2269,27 @@
               <item name="AndroidPlantID" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="res" type="d4f16f75:AndroidResFolderNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="AndroidPlantID" type="58d84e3e:PackageViewProjectNode" />
+              <item name="app" type="616d4139:PackageViewModuleNode" />
+            </path>
+            <path>
+              <item name="AndroidPlantID" type="58d84e3e:PackageViewProjectNode" />
+              <item name="app" type="616d4139:PackageViewModuleNode" />
+              <item name="android" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="AndroidPlantID" type="58d84e3e:PackageViewProjectNode" />
+              <item name="app" type="616d4139:PackageViewModuleNode" />
+              <item name="uci.plantID" type="1f31426a:PackageElementNode" />
             </path>
           </expand>
           <select />
@@ -2349,28 +2373,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="AndroidPlantID" type="58d84e3e:PackageViewProjectNode" />
-              <item name="app" type="616d4139:PackageViewModuleNode" />
-            </path>
-            <path>
-              <item name="AndroidPlantID" type="58d84e3e:PackageViewProjectNode" />
-              <item name="app" type="616d4139:PackageViewModuleNode" />
-              <item name="android" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="AndroidPlantID" type="58d84e3e:PackageViewProjectNode" />
-              <item name="app" type="616d4139:PackageViewModuleNode" />
-              <item name="uci.plantID" type="1f31426a:PackageElementNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2404,7 +2406,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Android JUnit.PlantUnitTest">
+  <component name="RunManager" selected="Android JUnit.PlantDBUnitTest">
     <configuration name="ExampleUnitTest" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -2634,8 +2636,8 @@
     </list>
     <recent_temporary>
       <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Android JUnit.PlantUnitTest" />
-        <item index="1" class="java.lang.String" itemvalue="Android JUnit.PlantDBUnitTest" />
+        <item index="0" class="java.lang.String" itemvalue="Android JUnit.PlantDBUnitTest" />
+        <item index="1" class="java.lang.String" itemvalue="Android JUnit.PlantUnitTest" />
         <item index="2" class="java.lang.String" itemvalue="Android JUnit.ExampleUnitTest" />
       </list>
     </recent_temporary>
@@ -2657,35 +2659,35 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="PlantUnitTest - 2018.04.27 at 13h 00m 35s.xml">
-      <configuration name="PlantUnitTest" configurationId="AndroidJUnit" />
+    <history-entry file="PlantDBUnitTest - 2018.04.27 at 17h 10m 48s.xml">
+      <configuration name="PlantDBUnitTest" configurationId="AndroidJUnit" />
     </history-entry>
-    <history-entry file="PlantUnitTest - 2018.04.27 at 13h 01m 00s.xml">
-      <configuration name="PlantUnitTest" configurationId="AndroidJUnit" />
+    <history-entry file="PlantDBUnitTest - 2018.04.27 at 17h 13m 33s.xml">
+      <configuration name="PlantDBUnitTest" configurationId="AndroidJUnit" />
     </history-entry>
-    <history-entry file="PlantUnitTest - 2018.04.27 at 13h 02m 28s.xml">
-      <configuration name="PlantUnitTest" configurationId="AndroidJUnit" />
+    <history-entry file="PlantDBUnitTest - 2018.04.27 at 17h 21m 25s.xml">
+      <configuration name="PlantDBUnitTest" configurationId="AndroidJUnit" />
     </history-entry>
-    <history-entry file="PlantUnitTest - 2018.04.27 at 13h 03m 38s.xml">
-      <configuration name="PlantUnitTest" configurationId="AndroidJUnit" />
+    <history-entry file="PlantDBUnitTest - 2018.04.27 at 17h 21m 41s.xml">
+      <configuration name="PlantDBUnitTest" configurationId="AndroidJUnit" />
     </history-entry>
-    <history-entry file="PlantUnitTest - 2018.04.27 at 13h 06m 42s.xml">
-      <configuration name="PlantUnitTest" configurationId="AndroidJUnit" />
+    <history-entry file="PlantDBUnitTest - 2018.04.27 at 17h 23m 09s.xml">
+      <configuration name="PlantDBUnitTest" configurationId="AndroidJUnit" />
     </history-entry>
-    <history-entry file="PlantUnitTest - 2018.04.27 at 13h 06m 56s.xml">
-      <configuration name="PlantUnitTest" configurationId="AndroidJUnit" />
+    <history-entry file="PlantDBUnitTest - 2018.04.27 at 17h 25m 13s.xml">
+      <configuration name="PlantDBUnitTest" configurationId="AndroidJUnit" />
     </history-entry>
-    <history-entry file="PlantUnitTest - 2018.04.27 at 13h 09m 19s.xml">
-      <configuration name="PlantUnitTest" configurationId="AndroidJUnit" />
+    <history-entry file="PlantDBUnitTest - 2018.04.27 at 17h 26m 26s.xml">
+      <configuration name="PlantDBUnitTest" configurationId="AndroidJUnit" />
     </history-entry>
-    <history-entry file="PlantUnitTest - 2018.04.27 at 13h 12m 20s.xml">
-      <configuration name="PlantUnitTest" configurationId="AndroidJUnit" />
+    <history-entry file="PlantDBUnitTest - 2018.04.27 at 17h 30m 31s.xml">
+      <configuration name="PlantDBUnitTest" configurationId="AndroidJUnit" />
     </history-entry>
-    <history-entry file="PlantUnitTest - 2018.04.27 at 13h 14m 51s.xml">
-      <configuration name="PlantUnitTest" configurationId="AndroidJUnit" />
+    <history-entry file="PlantDBUnitTest - 2018.04.27 at 17h 32m 39s.xml">
+      <configuration name="PlantDBUnitTest" configurationId="AndroidJUnit" />
     </history-entry>
-    <history-entry file="PlantUnitTest - 2018.04.27 at 13h 15m 41s.xml">
-      <configuration name="PlantUnitTest" configurationId="AndroidJUnit" />
+    <history-entry file="PlantDBUnitTest - 2018.04.27 at 17h 33m 23s.xml">
+      <configuration name="PlantDBUnitTest" configurationId="AndroidJUnit" />
     </history-entry>
   </component>
   <component name="TodoView">
@@ -2708,7 +2710,7 @@
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16971" sideWeight="0.50596255" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32876712" sideWeight="0.5236305" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32876712" sideWeight="0.4763695" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.4763695" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32990867" sideWeight="0.49785176" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32990867" sideWeight="0.5671321" order="7" side_tool="false" content_ui="tabs" />
@@ -2717,7 +2719,6 @@
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16971" sideWeight="0.49403748" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.206621" sideWeight="0.9156821" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -2730,6 +2731,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -2740,14 +2742,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="20" column="34" lean-forward="false" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/test/java/uci/plantID/PlantUnitTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -2768,7 +2762,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3240">
           <caret line="194" column="0" lean-forward="false" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2790,16 +2783,16 @@
           <folding>
             <element signature="e#4469#4470#0" expanded="true" />
             <element signature="e#4541#4542#0" expanded="true" />
-            <element signature="e#6642#6643#0" expanded="true" />
-            <element signature="e#6694#6695#0" expanded="true" />
-            <element signature="e#6739#6740#0" expanded="true" />
-            <element signature="e#6781#6782#0" expanded="true" />
-            <element signature="e#6837#6838#0" expanded="true" />
-            <element signature="e#6881#6882#0" expanded="true" />
-            <element signature="e#6922#6923#0" expanded="true" />
-            <element signature="e#6960#6961#0" expanded="true" />
-            <element signature="e#11550#11551#0" expanded="true" />
-            <element signature="e#11586#11587#0" expanded="true" />
+            <element signature="e#7076#7077#0" expanded="true" />
+            <element signature="e#7128#7129#0" expanded="true" />
+            <element signature="e#7173#7174#0" expanded="true" />
+            <element signature="e#7215#7216#0" expanded="true" />
+            <element signature="e#7271#7272#0" expanded="true" />
+            <element signature="e#7315#7316#0" expanded="true" />
+            <element signature="e#7356#7357#0" expanded="true" />
+            <element signature="e#7394#7395#0" expanded="true" />
+            <element signature="e#11984#11985#0" expanded="true" />
+            <element signature="e#12020#12021#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2818,6 +2811,7 @@
           <caret line="54" column="10" lean-forward="false" selection-start-line="54" selection-start-column="10" selection-end-line="54" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2415#2428#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2866,7 +2860,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3402">
           <caret line="194" column="0" lean-forward="false" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2877,16 +2870,16 @@
           <folding>
             <element signature="e#4469#4470#0" expanded="true" />
             <element signature="e#4541#4542#0" expanded="true" />
-            <element signature="e#6642#6643#0" expanded="true" />
-            <element signature="e#6694#6695#0" expanded="true" />
-            <element signature="e#6739#6740#0" expanded="true" />
-            <element signature="e#6781#6782#0" expanded="true" />
-            <element signature="e#6837#6838#0" expanded="true" />
-            <element signature="e#6881#6882#0" expanded="true" />
-            <element signature="e#6922#6923#0" expanded="true" />
-            <element signature="e#6960#6961#0" expanded="true" />
-            <element signature="e#11550#11551#0" expanded="true" />
-            <element signature="e#11586#11587#0" expanded="true" />
+            <element signature="e#7076#7077#0" expanded="true" />
+            <element signature="e#7128#7129#0" expanded="true" />
+            <element signature="e#7173#7174#0" expanded="true" />
+            <element signature="e#7215#7216#0" expanded="true" />
+            <element signature="e#7271#7272#0" expanded="true" />
+            <element signature="e#7315#7316#0" expanded="true" />
+            <element signature="e#7356#7357#0" expanded="true" />
+            <element signature="e#7394#7395#0" expanded="true" />
+            <element signature="e#11984#11985#0" expanded="true" />
+            <element signature="e#12020#12021#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2915,7 +2908,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3402">
           <caret line="194" column="0" lean-forward="false" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2977,6 +2969,7 @@
           <caret line="51" column="32" lean-forward="false" selection-start-line="51" selection-start-column="32" selection-end-line="51" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2415#2428#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2988,16 +2981,16 @@
           <folding>
             <element signature="e#4469#4470#0" expanded="true" />
             <element signature="e#4541#4542#0" expanded="true" />
-            <element signature="e#6642#6643#0" expanded="true" />
-            <element signature="e#6694#6695#0" expanded="true" />
-            <element signature="e#6739#6740#0" expanded="true" />
-            <element signature="e#6781#6782#0" expanded="true" />
-            <element signature="e#6837#6838#0" expanded="true" />
-            <element signature="e#6881#6882#0" expanded="true" />
-            <element signature="e#6922#6923#0" expanded="true" />
-            <element signature="e#6960#6961#0" expanded="true" />
-            <element signature="e#11550#11551#0" expanded="true" />
-            <element signature="e#11586#11587#0" expanded="true" />
+            <element signature="e#7076#7077#0" expanded="true" />
+            <element signature="e#7128#7129#0" expanded="true" />
+            <element signature="e#7173#7174#0" expanded="true" />
+            <element signature="e#7215#7216#0" expanded="true" />
+            <element signature="e#7271#7272#0" expanded="true" />
+            <element signature="e#7315#7316#0" expanded="true" />
+            <element signature="e#7356#7357#0" expanded="true" />
+            <element signature="e#7394#7395#0" expanded="true" />
+            <element signature="e#11984#11985#0" expanded="true" />
+            <element signature="e#12020#12021#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -3016,6 +3009,7 @@
           <caret line="54" column="10" lean-forward="false" selection-start-line="54" selection-start-column="10" selection-end-line="54" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2415#2428#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -3064,7 +3058,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3402">
           <caret line="194" column="0" lean-forward="false" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3075,16 +3068,16 @@
           <folding>
             <element signature="e#4469#4470#0" expanded="true" />
             <element signature="e#4541#4542#0" expanded="true" />
-            <element signature="e#6642#6643#0" expanded="true" />
-            <element signature="e#6694#6695#0" expanded="true" />
-            <element signature="e#6739#6740#0" expanded="true" />
-            <element signature="e#6781#6782#0" expanded="true" />
-            <element signature="e#6837#6838#0" expanded="true" />
-            <element signature="e#6881#6882#0" expanded="true" />
-            <element signature="e#6922#6923#0" expanded="true" />
-            <element signature="e#6960#6961#0" expanded="true" />
-            <element signature="e#11550#11551#0" expanded="true" />
-            <element signature="e#11586#11587#0" expanded="true" />
+            <element signature="e#7076#7077#0" expanded="true" />
+            <element signature="e#7128#7129#0" expanded="true" />
+            <element signature="e#7173#7174#0" expanded="true" />
+            <element signature="e#7215#7216#0" expanded="true" />
+            <element signature="e#7271#7272#0" expanded="true" />
+            <element signature="e#7315#7316#0" expanded="true" />
+            <element signature="e#7356#7357#0" expanded="true" />
+            <element signature="e#7394#7395#0" expanded="true" />
+            <element signature="e#11984#11985#0" expanded="true" />
+            <element signature="e#12020#12021#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -3105,7 +3098,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3402">
           <caret line="194" column="0" lean-forward="false" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3118,18 +3110,34 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/uci/plantID/plants.JSON" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/assets/plants.JSON">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="21" column="6" lean-forward="false" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="12" column="16" lean-forward="false" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/test/java/uci/plantID/PlantUnitTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="37" column="110" lean-forward="false" selection-start-line="37" selection-start-column="110" selection-end-line="37" selection-end-column="110" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-27/java/util/ArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8715">
+          <caret line="451" column="26" lean-forward="false" selection-start-line="451" selection-start-column="26" selection-end-line="451" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/assets/plants.JSON">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="9" column="92" lean-forward="false" selection-start-line="9" selection-start-column="92" selection-end-line="9" selection-end-column="92" />
           <folding />
         </state>
       </provider>
@@ -3142,47 +3150,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/test/java/uci/plantID/PlantDBUnitTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="29" column="1" lean-forward="false" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/test/java/uci/plantID/PlantUnitTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="37" column="110" lean-forward="false" selection-start-line="37" selection-start-column="110" selection-end-line="37" selection-end-column="110" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/uci/plantID/plant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1806">
-          <caret line="124" column="12" lean-forward="false" selection-start-line="124" selection-start-column="12" selection-end-line="124" selection-end-column="12" />
-          <folding>
-            <element signature="e#4469#4470#0" expanded="true" />
-            <element signature="e#4541#4542#0" expanded="true" />
-            <element signature="e#6642#6643#0" expanded="true" />
-            <element signature="e#6694#6695#0" expanded="true" />
-            <element signature="e#6739#6740#0" expanded="true" />
-            <element signature="e#6781#6782#0" expanded="true" />
-            <element signature="e#6837#6838#0" expanded="true" />
-            <element signature="e#6881#6882#0" expanded="true" />
-            <element signature="e#6922#6923#0" expanded="true" />
-            <element signature="e#6960#6961#0" expanded="true" />
-            <element signature="e#11550#11551#0" expanded="true" />
-            <element signature="e#11586#11587#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/uci/plantID/StartPage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-42">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        <state relative-caret-position="567">
+          <caret line="32" column="47" lean-forward="false" selection-start-line="32" selection-start-column="47" selection-end-line="32" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
             <marker date="1524853807818" expanded="true" signature="1287:1295" ph="{...}" />
@@ -3190,9 +3161,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/test/java/uci/plantID/PlantDBUnitTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="861">
+          <caret line="47" column="43" lean-forward="false" selection-start-line="47" selection-start-column="43" selection-end-line="47" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/uci/plantID/plant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="30" column="30" lean-forward="false" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
+          <folding>
+            <element signature="e#4469#4470#0" expanded="true" />
+            <element signature="e#4541#4542#0" expanded="true" />
+            <element signature="e#7076#7077#0" expanded="true" />
+            <element signature="e#7128#7129#0" expanded="true" />
+            <element signature="e#7173#7174#0" expanded="true" />
+            <element signature="e#7215#7216#0" expanded="true" />
+            <element signature="e#7271#7272#0" expanded="true" />
+            <element signature="e#7315#7316#0" expanded="true" />
+            <element signature="e#7356#7357#0" expanded="true" />
+            <element signature="e#7394#7395#0" expanded="true" />
+            <element signature="e#11984#11985#0" expanded="true" />
+            <element signature="e#12020#12021#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/uci/plantID/rankedPlant.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
+        <state relative-caret-position="525">
           <caret line="31" column="1" lean-forward="false" selection-start-line="31" selection-start-column="1" selection-end-line="31" selection-end-column="1" />
           <folding>
             <element signature="e#463#464#0" expanded="true" />
@@ -3205,10 +3205,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/uci/plantID/plantDatabase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
-          <caret line="80" column="76" lean-forward="false" selection-start-line="80" selection-start-column="76" selection-end-line="80" selection-end-column="76" />
+        <state relative-caret-position="168">
+          <caret line="53" column="48" lean-forward="false" selection-start-line="53" selection-start-column="48" selection-end-line="53" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2415#2428#0" expanded="true" />
           </folding>
         </state>
       </provider>

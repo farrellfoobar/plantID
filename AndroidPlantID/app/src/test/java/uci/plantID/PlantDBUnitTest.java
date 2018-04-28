@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
@@ -17,7 +18,7 @@ public class PlantDBUnitTest
     @Test
     public void canCreateDB() throws Exception
     {
-        String yourLoc = "E:\\AndroidStudioProjects\\";                              //replace as needed
+        String yourLoc = "C:\\Users\\farre\\Documents\\";                            //replace as needed
         String loc = "plantID\\AndroidPlantID\\app\\src\\main\\assets\\plants.JSON"; //leave alone (universal)
 
         InputStreamReader is = new InputStreamReader( new FileInputStream(yourLoc + loc) );
@@ -27,4 +28,25 @@ public class PlantDBUnitTest
         assert db.getPlant("Acmispon glaber").equals(p);
         assert db.getPlant("Acmispon glaber").getleafType().equals(p.getleafType());
     }
+
+    @Test
+    public void canGetMatches() throws Exception
+    {
+        String yourLoc = "C:\\Users\\farre\\Documents\\";                              //replace as needed
+        String loc = "plantID\\AndroidPlantID\\app\\src\\main\\assets\\plants.JSON"; //leave alone (universal)
+
+        InputStreamReader is = new InputStreamReader( new FileInputStream(yourLoc + loc) );
+        plantDatabase db = new plantDatabase( is );
+
+        plant p = new plant( "", "", "shrub", "pinnate", "opposite", "erect", "yellow", "bilateral" );
+
+        ArrayList<rankedPlant> matches = new ArrayList<rankedPlant>();
+        matches = db.getGreatestMatch(p, 5);
+
+        System.out.println( matches.size() );
+        for( rankedPlant s : matches)
+            System.out.println(s.getPlant() + " is a % " + s.getRank() + " match");
+    }
+
+
 }
