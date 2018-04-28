@@ -85,7 +85,20 @@ public class plant implements Comparable<plant>
     @Override
     public int compareTo( plant p )
     {
-        return this.scientificName.compareTo( p.scientificName );
+        if( this.plantGroup.get(0) != p.plantGroup.get(0)  )
+            return this.plantGroup.get(0).compareTo( p.plantGroup.get(0) );
+        else if( this.leafType.get(0) != p.leafType.get(0)  )
+            return this.leafType.get(0).compareTo( p.leafType.get(0) );
+        else if( this.leafArrangement.get(0) != p.leafArrangement.get(0)  )
+            return this.leafArrangement.get(0).compareTo( p.leafArrangement.get(0) );
+        else if( this.growthForm.get(0) != p.growthForm.get(0)  )
+            return this.growthForm.get(0).compareTo( p.growthForm.get(0) );
+        else if( this.flowerColor.get(0) != p.flowerColor.get(0)  )
+            return this.flowerColor.get(0).compareTo( p.flowerColor.get(0) );
+        else if( this.flowerSymetry.get(0) != p.flowerSymetry.get(0)  )
+            return this.flowerSymetry.get(0).compareTo( p.flowerSymetry.get(0) );
+        else
+            return 0;
     }
 
     @Override

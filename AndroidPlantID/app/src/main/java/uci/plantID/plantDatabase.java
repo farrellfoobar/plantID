@@ -62,12 +62,11 @@ public class plantDatabase extends Activity
 
         ArrayList<rankedPlant> ranks = new ArrayList<>(numToBeRanked);
 
-        //ranks.set(0, new rankedPlant( plants.get(startLocation), query.getMatch( plants.get(startLocation), 0 ) ) );
-
         double currentMatch;
-        double worstTopMatch = 0;//ranks.get( numToBeRanked-1 ).getRank();
-        //for( int i = startLocation+1; i % startLocation != 0; i++)  //iterate from startlocation to startlocation*2
-        for(int i = 0; i < plants.size(); i++)
+        double worstTopMatch = 0;
+        //for( int i = 0; i  < plants.size(); i++)
+        int i = startLocation;
+        do
         {
             currentMatch = query.getMatch( plants.get(i), worstTopMatch );
             if( currentMatch  > worstTopMatch )
@@ -84,7 +83,9 @@ public class plantDatabase extends Activity
                 else
                     worstTopMatch = ranks.get( 0 ).getRank();   //get(0) is the worst match
 
+                i++;
             }
+            while( i <  );
             /*
             else if( currentMatch == worstTopMatch) //happens too often maybe issue with thresh
             {

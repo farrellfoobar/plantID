@@ -37,7 +37,6 @@ public class StartPage extends AppCompatActivity
         };
 
         Log.d("", "OUT" + db.getPlant( "Acmispon glaber " ).getCommonName());
-
     }
 
     //this method is called when the next button on the activity_main page is pressed, it must take View view as a parameter, and view give access to certain ui elements
