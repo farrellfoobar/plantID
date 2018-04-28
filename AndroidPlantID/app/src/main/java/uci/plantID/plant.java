@@ -36,8 +36,6 @@ public class plant implements Comparable<plant>
     private ArrayList<String> flowerColor;
     private ArrayList<String> flowerSymetry;
 
-    //TODO: This method needs to be able to parse a string with a comma in it and split it into multiple strings and add each
-    //(This need to be done to make it compatable with JSON parsing in plantBD)
     public plant( String scientificName, String commonName, String plantGroup, String leafType, String leafArrangement, String growthForm,String flowerColor, String flowerSymetry)
     {
         this.plantGroup         = new ArrayList<>();
@@ -48,12 +46,12 @@ public class plant implements Comparable<plant>
         this.flowerSymetry      = new ArrayList<>();
         this.setScientificName( scientificName );
         this.setCommonName( commonName );
-        this.addPlantGroup( plantGroup );
-        this.addLeafArrangement( leafArrangement );
-        this.addLeafType( leafType);
-        this.addGrowthForm( growthForm );
-        this.addFlowerSymetry( flowerSymetry );
-        this.addFlowerColor( flowerColor );
+        this.addPlantGroup( plantGroup.split(", ") );
+        this.addLeafArrangement( leafArrangement.split(", ") );
+        this.addLeafType( leafType.split(", ") );
+        this.addGrowthForm( growthForm.split(", ") );
+        this.addFlowerSymetry( flowerSymetry.split(", ") );
+        this.addFlowerColor( flowerColor.split(", ") );
     }
 
     public plant( String[] attribs ) throws IllegalArgumentException
@@ -103,11 +101,6 @@ public class plant implements Comparable<plant>
                 this.getFlowerSymetry() + "\n";
     }
 
-    /*TODO: implement getMatch
-      This method returns a int from 0 to 100 representing how similar this plant is to p
-      If it is certain that this plant will have a match lower than thresh, return the current match, without evaluating any further
-      a.getMatch(b, 0) = b.getMatch(a, 0)
-    */
     public double getMatch( plant p, double thresh  )
     {
         double match = 1.0;
@@ -120,7 +113,6 @@ public class plant implements Comparable<plant>
             {
                 if( p.getList(i).contains(s) )
                     intersectionSize++;
-
             }
 
             match -=  1.0/(NUM_ATTRIB-2) * (1-(intersectionSize / (uninionSize-intersectionSize)) );

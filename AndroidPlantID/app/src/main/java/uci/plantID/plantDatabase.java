@@ -60,12 +60,9 @@ public class plantDatabase extends Activity
         if( startLocation < 0)
             startLocation = -startLocation +1;
 
-        ArrayList<rankedPlant> ranks = new ArrayList<rankedPlant>(numToBeRanked);
+        ArrayList<rankedPlant> ranks = new ArrayList<>(numToBeRanked);
 
-        for(int i = 0; i < numToBeRanked; i++)
-            ranks.add(new rankedPlant(null, 0));
-
-        ranks.set(0, new rankedPlant( plants.get(startLocation), query.getMatch( plants.get(startLocation), 0 ) ) );
+        //ranks.set(0, new rankedPlant( plants.get(startLocation), query.getMatch( plants.get(startLocation), 0 ) ) );
 
         double currentMatch;
         double worstTopMatch = 0;//ranks.get( numToBeRanked-1 ).getRank();
@@ -73,13 +70,20 @@ public class plantDatabase extends Activity
         for(int i = 0; i < plants.size(); i++)
         {
             currentMatch = query.getMatch( plants.get(i), worstTopMatch );
-            System.out.println(i);
             if( currentMatch  > worstTopMatch )
             {
-                System.out.println(plants.get(i));
-                ranks.set( ranks.size()-1, new rankedPlant( plants.get(i), currentMatch ) );
-                Collections.sort(ranks);
-                worstTopMatch = ranks.get( numToBeRanked-1 ).getRank();
+                if( ranks.size() < numToBeRanked )
+                    ranks.add( new rankedPlant( plants.get(i), currentMatch ) );
+                else
+                    ranks.set(0, new rankedPlant( plants.get(i), currentMatch ) );  //replace the worst
+
+                Collections.sort(ranks);                    //sorts in ascending order
+
+                if( ranks.size() < numToBeRanked )
+                    worstTopMatch = 0;                          //we need to populate more results
+                else
+                    worstTopMatch = ranks.get( 0 ).getRank();   //get(0) is the worst match
+
             }
             /*
             else if( currentMatch == worstTopMatch) //happens too often maybe issue with thresh
@@ -89,6 +93,11 @@ public class plantDatabase extends Activity
         }
 
         return ranks;
+    }
+
+    public int size()
+    {
+        return plants.size();
     }
 
     //This method is for debugging

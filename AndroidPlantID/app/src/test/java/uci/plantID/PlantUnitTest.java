@@ -37,4 +37,13 @@ public class PlantUnitTest
 
         System.out.println( "----DATA----" + "P1 to p3 with thresh: " + Double.toString( p1.getMatch(p3, 83.33) )  );
     }
+
+    @Test
+    public void dataBaseMachChecking()
+    {
+        plant p1 = new plant( "", "", "shrub", "pinnate", "opposite", "erect", "yellow", "bilateral" );
+        plant p2 = new plant( "", "", "forb", "pinnate", "opposite", "prostrate", "yellow", "bilateral" );
+
+        System.out.println(" db: " + p1.getMatch(p2, 0) );
+    }
 }

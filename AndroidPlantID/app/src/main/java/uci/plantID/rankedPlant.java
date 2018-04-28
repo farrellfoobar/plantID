@@ -5,7 +5,7 @@ public class rankedPlant implements Comparable
     private plant p;
     private double rank;
 
-    public rankedPlant( plant P, double rank)
+    public rankedPlant( plant p, double rank)
     {
         this.p = p;
         this.rank = rank;
