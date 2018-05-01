@@ -83,15 +83,14 @@ public class plantDatabase extends Activity
                 else
                     worstTopMatch = ranks.get( 0 ).getRank();   //get(0) is the worst match
 
-                i++;
             }
-            while( i <  );
-            /*
-            else if( currentMatch == worstTopMatch) //happens too often maybe issue with thresh
-            {
-                ranks.add( new rankedPlant( plants.get(i), currentMatch ) );
-            } */
-        }
+
+            i++;
+
+            if( i >= plants.size() )
+                i = i % plants.size();
+
+        }while( i != startLocation);
 
         return ranks;
     }

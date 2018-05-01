@@ -15,27 +15,27 @@ import static org.junit.Assert.assertEquals;
  */
 public class PlantDBUnitTest
 {
+    String yourLoc = "C:\\Users\\farre\\Documents\\";                              //replace as needed
+    String loc = "plantID\\AndroidPlantID\\app\\src\\main\\assets\\plants.JSON"; //leave alone (universal)
+    String testingLoc = "plantID\\AndroidPlantID\\app\\src\\main\\assets\\testingPlants.JSON"; //leave alone (universal)
+
     @Test
     public void canCreateDB() throws Exception
     {
-        String yourLoc = "E:\\AndroidStudioProjects\\";                              //replace as needed
-        String loc = "plantID\\AndroidPlantID\\app\\src\\main\\assets\\plants.JSON"; //leave alone (universal)
-
+        /*
         InputStreamReader is = new InputStreamReader( new FileInputStream(yourLoc + loc) );
         plantDatabase db = new plantDatabase( is );
         plant p = new plant( "Acmispon glaber", "Deerweed", "shrub", "pinnate", "opposite", "erect", "yellow", "bilateral" );
 
         assert db.getPlant("Acmispon glaber").equals(p);
         assert db.getPlant("Acmispon glaber").getleafType().equals(p.getleafType());
+        */
     }
 
     @Test
     public void canGetMatches() throws Exception
     {
-        String yourLoc = "E:\\AndroidStudioProjects\\";                              //replace as needed
-        String loc = "plantID\\AndroidPlantID\\app\\src\\main\\assets\\plants.JSON"; //leave alone (universal)
-
-        InputStreamReader is = new InputStreamReader( new FileInputStream(yourLoc + loc) );
+        InputStreamReader is = new InputStreamReader( new FileInputStream(yourLoc + testingLoc) );
         plantDatabase db = new plantDatabase( is );
 
         plant p = new plant( "", "", "shrub", "pinnate", "opposite", "erect", "yellow", "bilateral" );
