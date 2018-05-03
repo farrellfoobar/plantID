@@ -1,7 +1,7 @@
 *.iml
 .gradle
 /local.properties
-/.idea/*
+AndroidPlantID/.idea/*
 .DS_Store
 /build
 /captures
