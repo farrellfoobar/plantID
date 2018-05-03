@@ -19,19 +19,18 @@ public class PlantDBUnitTest
     String loc = "plantID\\AndroidPlantID\\app\\src\\main\\assets\\plants.JSON"; //leave alone (universal)
     String testingLoc = "plantID\\AndroidPlantID\\app\\src\\main\\assets\\testingPlants.JSON"; //leave alone (universal)
 
+    /*
     @Test
     public void canCreateDB() throws Exception
     {
-        /*
         InputStreamReader is = new InputStreamReader( new FileInputStream(yourLoc + loc) );
         plantDatabase db = new plantDatabase( is );
         plant p = new plant( "Acmispon glaber", "Deerweed", "shrub", "pinnate", "opposite", "erect", "yellow", "bilateral" );
 
         assert db.getPlant("Acmispon glaber").equals(p);
         assert db.getPlant("Acmispon glaber").getleafType().equals(p.getleafType());
-        */
     }
-
+    */
     @Test
     public void canGetMatches() throws Exception
     {
