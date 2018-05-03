@@ -9,86 +9,90 @@
     if you guys want to rename these to plant_group_checkbox_tree etc make sure you change it
     in StartPage aswell
     -->
-    <CheckBox
-        android:id="@+id/plant_group_checkbox1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="64dp"
-        android:onClick="respondToButton"
-        android:text="@string/q1CheckButtonOption1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <include
+        android:id="@+id/leaf_arrangement_template"
+        layout="@layout/common_question"/>
 
-    <CheckBox
-        android:id="@+id/plant_group_checkbox2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginStart="24dp"
-        android:onClick="respondToButton"
-        android:text="@string/q1CheckButtonOption2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/plant_group_checkbox1" />
-
-    <CheckBox
-        android:id="@+id/plant_group_checkbox3"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginStart="24dp"
-        android:onClick="respondToButton"
-        android:text="@string/q1CheckButtonOption3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/plant_group_checkbox2" />
-
-    <CheckBox
-        android:id="@+id/plant_group_checkbox4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginStart="24dp"
-        android:onClick="respondToButton"
-        android:text="@string/q1CheckButtonOption4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/plant_group_checkbox3" />
-
-    <CheckBox
-        android:id="@+id/plant_group_checkbox5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginStart="24dp"
-        android:onClick="respondToButton"
-        android:text="@string/q1CheckButtonOption5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/plant_group_checkbox4" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="76dp"
-        android:layout_marginRight="76dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/q1text"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+    <ScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="359dp"
+        android:layout_height="350dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="86dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:text="Next"
-        android:clickable="true"
-        android:focusable="true"
-        android:onClick="respondToNextButton"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/scrollView3">
+
+            <CheckBox
+                android:id="@+id/leaf_arrangement_checkbox1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:onClick="respondToButton"
+                android:text="@string/q3CheckButtonOption1" />
+
+            <CheckBox
+                android:id="@+id/leaf_arrangement_checkbox2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:onClick="respondToButton"
+                android:text="@string/q3CheckButtonOption2" />
+
+            <CheckBox
+                android:id="@+id/leaf_arrangement_checkbox3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:onClick="respondToButton"
+                android:text="@string/q3CheckButtonOption3" />
+
+            <CheckBox
+                android:id="@+id/leaf_arrangement_checkbox4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:onClick="respondToButton"
+                android:text="@string/q3CheckButtonOption4" />
+
+            <CheckBox
+                android:id="@+id/leaf_arrangement_checkbox5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:onClick="respondToButton"
+                android:text="@string/q3CheckButtonOption5" />
+
+            <CheckBox
+                android:id="@+id/leaf_arrangement_checkbox6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:onClick="respondToButton"
+                android:text="@string/q3CheckButtonOption6" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>
