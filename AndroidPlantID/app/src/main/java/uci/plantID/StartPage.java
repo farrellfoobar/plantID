@@ -9,6 +9,9 @@ import android.widget.CheckBox;
 import android.widget.Button;
 
 
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 
 public class StartPage extends AppCompatActivity
@@ -31,14 +34,27 @@ public class StartPage extends AppCompatActivity
     };
     private static int checkbox_counter = 0;
     private final int checkbox_limit = 3;
+    private final int numResults = 5;   //will print top 5 scores (i.e. shows all ties)
     //I havent gotten to asking if there is a flower and then conditionally asking the next two questions
 
-    //TODO: DONE
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_page);
+
+        plantDatabase db = null;
+        try {
+            db = new plantDatabase( new InputStreamReader( this.getAssets().open("plants.JSON") ));
+        }catch( Exception e ) {
+            Log.d("----ERROR----", e.getMessage());
+            //something more?
+        }
+
+        // TODO: Call the line below whenever the query plant is done being edited and display the results
+        // ArrayList<rankedPlant> results = db.getGreatestMatch(queryPlant, numResults);
+        // rankedPlant.getRank() returns a double 0-100 representing how good a match it is
+        // rankedPlant.getPlant() returns the plant object
     }
 
     //this method is called when the next button on the activity_main page is pressed, it must take View view as a parameter, and view give access to certain ui elements
