@@ -181,11 +181,13 @@ public class StartPage extends AppCompatActivity
 
     private void buildResultsPage(ArrayList<rankedPlant> results){
         ViewGroup container = findViewById(R.id.results_container);
+        String text = "";
         Log.d("", container.toString());
         TextView[] plants = new TextView[results.size()];
         for (int i = 0; i < results.size(); ++i){
             plants[i] = new TextView(this);
-            plants[i].setText(results.get(i).getPlant().getCommonName());
+            text = results.get(i).getPlant().getCommonName() + "\n      Rank: " + results.get(i).getRank();
+            plants[i].setText(text);
             container.addView(plants[i]);
         }
 
