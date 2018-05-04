@@ -1,5 +1,6 @@
 package uci.plantID;
 
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,20 +8,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.Button;
+import android.widget.TextView;
 
-
-import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.function.Function;
+
 
 public class StartPage extends AppCompatActivity
 {
     //This plant is the plant we are building from the users answers and is visible in every class
-    public static plant queryPlant;
+    public static plant queryPlant = new plant();
+    public static plantDatabase db = null;
 
     private static int viewTracker = 0;
-    private static int[] views = {
+    private static int[] question_views = {
             R.layout.activity_start_page,
             R.layout.plant_group_question,
             R.layout.leaf_shape_question,
@@ -28,68 +32,165 @@ public class StartPage extends AppCompatActivity
             R.layout.plant_growth_form_question,
             R.layout.is_flower
     };
-    private static int[] flower_views = {
+
+    private static int[] question_flower_views = {
             R.layout.flower_color_question,
             R.layout.flower_symmetry_question
     };
+    private static ArrayList<ArrayList<String>> queries = new ArrayList<>();
+    private static boolean has_flowers = false;
     private static int checkbox_counter = 0;
-    private final int checkbox_limit = 3;
-    private final int numResults = 5;   //will print top 5 scores (i.e. shows all ties)
-    //I havent gotten to asking if there is a flower and then conditionally asking the next two questions
+    private final int numResults = 5;
 
+
+    //TODO: DONE
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_page);
 
-        plantDatabase db = null;
         try {
             db = new plantDatabase( new InputStreamReader( this.getAssets().open("plants.JSON") ));
-        }catch( Exception e ) {
-            Log.d("----ERROR----", e.getMessage());
-            //something more?
+        }catch( Exception e )
+        {
+            Log.d( "----ERROR----",  e.getMessage() );
         }
 
-        // TODO: Call the line below whenever the query plant is done being edited and display the results
-        // ArrayList<rankedPlant> results = db.getGreatestMatch(queryPlant, numResults);
-        // rankedPlant.getRank() returns a double 0-100 representing how good a match it is
-        // rankedPlant.getPlant() returns the plant object
+        //Log.d("", "OUT" + db.getPlant( "Acmispon glaber " ).getCommonName());
     }
 
     //this method is called when the next button on the activity_main page is pressed, it must take View view as a parameter, and view give access to certain ui elements
     //TODO: DONE
     public void respondToNextButton(View view)
     {
+        buildQuery(view);
         ++viewTracker;
         reset();
         setView(view);
+    }
 
+    public void buildQuery(View view) {
+        int parentID = ((ViewGroup) view.getParent()).getId();
+        View parent = findViewById(parentID);
+        CheckBox box;
+
+        queries.add(new ArrayList<String>());
+
+        //TODO: fix temp bad query building control flow
+        if (isQuestionTemplate()) {
+            ViewGroup container = findViewById(R.id.question_container);
+
+            queries.add(new ArrayList<String>());
+            for (int i = 0; i < container.getChildCount(); ++i){
+                // gc should take care of problem with back button and redoing answers
+                box = (CheckBox) container.getChildAt(i);
+                if (isChecked(box)){
+                    queries.get(viewTracker - 1).add(box.getText().toString());
+                }
+            }
+            //Log.d("queries", String.valueOf(Arrays.toString(queries[viewTracker-1])));
+        }
+        else if (viewTracker == (question_views.length - 1)){
+            CheckBox flower_checkbox = findViewById(R.id.is_flower_checkbox1);
+            has_flowers = isChecked(flower_checkbox);
+        }
+        else if (viewTracker == question_views.length){
+            ViewGroup table = findViewById(R.id.question_container);
+            Log.d("# children: ", String.valueOf(table.getChildCount()));
+            queries.add(new ArrayList<String>());
+            for (int i = 0; i < table.getChildCount(); ++i){
+                ViewGroup tableRow = ((ViewGroup) table.getChildAt(i));
+                for (int j = 0; j < tableRow.getChildCount(); ++j){
+                    box = (CheckBox) tableRow.getChildAt(j);
+                    if (isChecked(box)){
+                        queries.get(viewTracker - 1).add(box.getTag().toString());
+                    }
+                }
+            }
+            //Log.d("queries", String.valueOf(Arrays.toString(queries[viewTracker-2])));
+
+        }
+    }
+    private boolean isQuestionTemplate(){
+        // TODO: fix temp method for distinguishing template questions
+
+        return viewTracker != 0 &&
+                viewTracker != (question_views.length - 1) &&
+                viewTracker != question_views.length &&
+                viewTracker < (question_views.length + question_flower_views.length);
+    }
+
+    private void buildPlant(){
+        // TODO: optimize
+        print2DArray(queries);
+        /*
+        String[] test = queries.get(0).toArray(new String[0]);
+        for (String s : test){
+            Log.d("", s);
+        }
+        Log.d("1:", test.toString());
+        Log.d("bool:", String.valueOf(queries.get(0).toArray(new String[0]) == null));*/
+        queryPlant.addPlantGroup(queries.get(0).toArray(new String[0]));
+        queryPlant.addLeafType(queries.get(1).toArray(new String[0]));
+        queryPlant.addLeafArrangement(queries.get(2).toArray(new String[0]));
+        queryPlant.addGrowthForm(queries.get(3).toArray(new String[0]));
+        if (has_flowers){
+            queryPlant.addFlowerColor("N.A.");
+        }
+        else {
+            queryPlant.addFlowerColor(queries.get(4).toArray(new String[0]));
+            queryPlant.addFlowerSymetry(queries.get(5).toArray(new String[0]));
+        }
+        Log.d("plant:", queryPlant.toString());
     }
 
     //the previous button doesn't exists on the layouts but this is the method it should call
     public void respondToPrevButton(View view)
     {
+        if (viewTracker > 0 && viewTracker < question_views.length + question_flower_views.length) {
+            queries.remove(queries.size() - 1);
+        }
         --viewTracker;
         reset();
         setView(view);
     }
 
     public void setView(View view) {
-        // Temporary view flow control
+        // TODO: Temporary view flow control
 
-        if (viewTracker < views.length) {
-            setContentView( views[viewTracker] );
+        if (viewTracker < question_views.length) {
+            setContentView(question_views[viewTracker]);
+            if (viewTracker == (question_views.length - 1)) {
+                // set has flower layout next button to true
+
+                Button nextButton = findViewById(R.id.is_flower_template).findViewById(R.id.question_next);
+                nextButton.setEnabled(true);
+            }
+
         }
-        else if (viewTracker < (views.length + flower_views.length)) {
-            setContentView(flower_views[viewTracker - views.length]);
+        else if (has_flowers && viewTracker < (question_views.length + question_flower_views.length)) {
+            setContentView(question_flower_views[viewTracker - question_views.length]);
         }
         else{
             setContentView(R.layout.results);
+            buildPlant();
+            ArrayList<rankedPlant> results = db.getGreatestMatch(queryPlant, numResults);
+            Log.d("results", Arrays.toString(results.toArray()));
+            Log.d("plant", results.get(0).getPlant().toString());
+            buildResultsPage(results);
         }
     }
 
-    private void buildQuestionLayout(){
+    private void buildResultsPage(ArrayList<rankedPlant> results){
+        ViewGroup container = findViewById(R.id.results_container);
+        Log.d("", container.toString());
+        TextView[] plants = new TextView[results.size()];
+        for (int i = 0; i < results.size(); ++i){
+            plants[i] = new TextView(this);
+            plants[i].setText(results.get(i).getPlant().getCommonName());
+            container.addView(plants[i]);
+        }
 
     }
 
@@ -152,8 +253,8 @@ public class StartPage extends AppCompatActivity
         Log.d("view id", String.valueOf(view.getId()));
         if (parent != null){
             Log.d("number of children", String.valueOf(((ViewGroup) view.getParent()).getChildCount()));
-        }
-        */
+        }*/
+
 
         enableNextButton(view, nextButton);
 
@@ -220,18 +321,17 @@ public class StartPage extends AppCompatActivity
     }
 
     public void handleIsFlowerButton(View view){
-        boolean checked = isChecked(view);
-        Button nextButton = findViewById(R.id.is_flower_template).findViewById(R.id.question_next);
+        //boolean checked = isChecked(view);
+        //Button nextButton = findViewById(R.id.is_flower_template).findViewById(R.id.question_next);
 
         // require minimum API 16 for getParentForAccessibility
         // get parent view of the checkbox
-        ViewGroup parent = (ViewGroup) view.getParent();
+        //ViewGroup parent = (ViewGroup) view.getParent();
 
         // count how many checkboxes have been click
-        setCheckbox_counter(checked);
+        //setCheckbox_counter(checked);
 
-        enableNextButton(view, nextButton);
-
+        //nextButton.setEnabled(true);
         //limitCheckbox(parent, true, 1);
     }
 
@@ -258,11 +358,11 @@ public class StartPage extends AppCompatActivity
         limitCheckbox(parent, true, 3);
     }
 
-    private boolean isChecked(View view){
+    private boolean isChecked(View view) {
         return ((CheckBox) view).isChecked();
     }
 
-    private void limitCheckbox(ViewGroup parent, boolean isLimited, int limit){
+    private void limitCheckbox(ViewGroup parent, boolean isLimited, int limit) {
         // limit how many checkboxes are allowed to be checked if true
         if (checkbox_counter >= limit) {
             disableAllCheckboxes(parent);
@@ -273,7 +373,7 @@ public class StartPage extends AppCompatActivity
     }
 
     private void enableNextButton(View view, Button nextButton){
-        if (isChecked(view)) {
+        if (checkbox_counter >= 1) {
             nextButton.setEnabled(true);
         }
         else {
@@ -310,6 +410,14 @@ public class StartPage extends AppCompatActivity
         else{
             --checkbox_counter;
         }
+    }
+
+    private void print2DArray(ArrayList<ArrayList<String>> array){
+        String log = "";
+        for (ArrayList<String> a : array){
+            log += a.toString() + "\n";
+        }
+        Log.d("2D Query:", log);
     }
 
     private void reset(){

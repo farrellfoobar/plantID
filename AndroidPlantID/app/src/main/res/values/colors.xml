@@ -12,5 +12,7 @@
     <color name="green">#2fff00</color>
     <color name="blue">#001eff</color>
     <color name="purple">#5e00ff</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
 
 </resources>

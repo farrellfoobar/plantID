@@ -24,15 +24,15 @@
     <string name="q1CheckButtonOption2">grass</string>
     <string name="q1CheckButtonOption3">shrub</string>
     <string name="q1CheckButtonOption4">succulent</string>
-    <string name="q1CheckButtonOption5">other/flowering</string> <!-- this is the section for forb but I figured noone would know what a "Forb" is -->
+    <string name="q1CheckButtonOption5">forb</string> <!-- this is the section for forb but I figured noone would know what a "Forb" is -->
 
     <string name="q2text">Leaf Shape?</string>
     <string name="q2CheckButtonOption1">simple</string>
-    <string name="q2CheckButtonOption2">lobe</string>
+    <string name="q2CheckButtonOption2">lobed</string>
     <string name="q2CheckButtonOption3">pinnate</string>
     <string name="q2CheckButtonOption4">compound/ deeply divided</string>
     <string name="q2CheckButtonOption5">blade</string>
-    <string name="q2CheckButtonOption6">N/A</string>
+    <string name="q2CheckButtonOption6">N.A.</string>
 
     <string name="q3text">Leaf Arrangement?</string>
     <string name="q3CheckButtonOption1">alternate</string>
@@ -43,7 +43,7 @@
     <string name="q3CheckButtonOption6">rosette</string>
 
     <string name="q4text">Growth Form?</string>
-    <string name="q4CheckButtonOption1">prostate</string>
+    <string name="q4CheckButtonOption1">prostrate</string>
     <string name="q4CheckButtonOption2">decumbent</string>
     <string name="q4CheckButtonOption3">ascending</string>
     <string name="q4CheckButtonOption4">erect</string>
@@ -57,6 +57,15 @@
     <string name="q5CheckButtonOption1">Has a flower</string>
 
     <string name="q6text">Flower Color?</string>
+    <string name="red">red</string>
+    <string name="blue">blue</string>
+    <string name="purple">purple</string>
+    <string name="white">white</string>
+    <string name="orange">orange</string>
+    <string name="green">green</string>
+    <string name="pink">pink</string>
+    <string name="yellow">yellow</string>
+
 
     <string name="q7text">Flower Symmetry?</string>
     <string name="q7CheckButtonOption1">radial</string>
