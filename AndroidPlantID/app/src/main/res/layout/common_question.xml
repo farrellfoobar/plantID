@@ -39,6 +39,7 @@
         layout="@layout/common_top"
         android:layout_width="84dp"
         android:layout_height="77dp" />
+
     <Button
         android:id="@+id/question_next"
         android:layout_width="330dp"
@@ -46,9 +47,9 @@
         android:layout_marginBottom="16dp"
         android:layout_marginLeft="15dp"
         android:layout_marginStart="15dp"
-        android:text="@string/next"
-        android:onClick="respondToNextButton"
         android:enabled="false"
+        android:onClick="respondToNextButton"
+        android:text="@string/next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>

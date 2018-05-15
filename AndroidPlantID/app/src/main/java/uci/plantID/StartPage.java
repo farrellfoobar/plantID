@@ -1,12 +1,18 @@
 package uci.plantID;
 
+import android.media.Image;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewStub;
 import android.widget.CheckBox;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.io.InputStreamReader;
@@ -17,9 +23,10 @@ import java.util.ArrayList;
 public class StartPage extends AppCompatActivity
 {
     //This plant is the plant we are building from the users answers and is visible in every class
-    public static plant queryPlant = new plant();
-    public static plantDatabase db = null;
-
+    public static plant queryPlant;
+    public static plantDatabase db;
+    private ViewController control;
+/*
     private static int viewTracker = 0;
     private static int[] question_views = {
             R.layout.activity_start_page,
@@ -37,7 +44,7 @@ public class StartPage extends AppCompatActivity
     private static ArrayList<ArrayList<String>> queries = new ArrayList<>();
     private static boolean has_flowers = false;
     private static int checkbox_counter = 0;
-    private final int numResults = 5;
+    private final int numResults = 5;*/
 
 
     //TODO: DONE
@@ -45,18 +52,73 @@ public class StartPage extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start_page);
+        init();
 
+        setContentView(R.layout.activity_start_page);
+    }
+
+    private void init(){
         try {
             db = new plantDatabase( new InputStreamReader( this.getAssets().open("plants.JSON") ));
         }catch( Exception e )
         {
             Log.d( "----ERROR----",  e.getMessage() );
         }
-
-        //Log.d("", "OUT" + db.getPlant( "Acmispon glaber " ).getCommonName());
+        queryPlant = new plant();
+        db = null;
+        control = new ViewController(this);
     }
+    static int counter = 0;
+    public void respond(View view){
+        //control.respond(this, view);
+        View test = getLayoutInflater().inflate(R.layout.plant_standard_linear_scroll, null);
+        LinearLayout a = test.findViewById(R.id.container);
+        CardView b = new CardView(this);
+        ConstraintLayout c = new ConstraintLayout(this);
+        ImageButton d = new ImageButton(this);
+        b.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        c.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
+        d.setLayoutParams(new LinearLayout.LayoutParams(250, 250));
+
+        final ViewStub stub = new ViewStub(this);
+        stub.setLayoutResource(R.layout.test_stub);
+
+
+        a.addView(b);
+        a.addView(stub);
+
+        b.addView(c);
+        d.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (stub.getParent() != null) {
+                    stub.inflate();
+                    Log.d(stub.toString(), "inflate");
+                }
+                else if (stub.isShown()){
+                    stub.setVisibility(View.VISIBLE);
+                    Log.d(stub.toString(), "visible");
+                }
+                else{
+                    stub.setVisibility(View.GONE);
+                    Log.d(stub.toString(),"gone");
+                }
+            }
+        });
+
+        c.addView(d);
+
+        View test2 = getLayoutInflater().inflate(R.layout.plant_standard_linear_scroll, null);
+
+
+        if (counter == 0)
+            setContentView(test);
+        else
+            setContentView(test2);
+        ++counter;
+    }
+/*
     //this method is called when the next button on the activity_main page is pressed, it must take View view as a parameter, and view give access to certain ui elements
     //TODO: DONE
     public void respondToNextButton(View view)
@@ -127,7 +189,7 @@ public class StartPage extends AppCompatActivity
             Log.d("", s);
         }
         Log.d("1:", test.toString());
-        Log.d("bool:", String.valueOf(queries.get(0).toArray(new String[0]) == null));*/
+        Log.d("bool:", String.valueOf(queries.get(0).toArray(new String[0]) == null));
         queryPlant.addPlantGroup(queries.get(0).toArray(new String[0]));
         queryPlant.addLeafType(queries.get(1).toArray(new String[0]));
         queryPlant.addLeafArrangement(queries.get(2).toArray(new String[0]));
@@ -252,7 +314,7 @@ public class StartPage extends AppCompatActivity
         Log.d("view id", String.valueOf(view.getId()));
         if (parent != null){
             Log.d("number of children", String.valueOf(((ViewGroup) view.getParent()).getChildCount()));
-        }*/
+        }
 
 
         enableNextButton(view, nextButton);
@@ -421,5 +483,5 @@ public class StartPage extends AppCompatActivity
 
     private void reset(){
         checkbox_counter = 0;
-    }
+    }*/
 }
