@@ -2,6 +2,7 @@ package uci.plantID;
 
 import android.media.Image;
 import android.support.constraint.ConstraintLayout;
+import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -14,6 +15,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.io.InputStreamReader;
 import java.util.Arrays;
@@ -70,15 +73,30 @@ public class StartPage extends AppCompatActivity
     }
     static int counter = 0;
     public void respond(View view){
+        int id = 1000;
         //control.respond(this, view);
         View test = getLayoutInflater().inflate(R.layout.plant_standard_linear_scroll, null);
         LinearLayout a = test.findViewById(R.id.container);
         CardView b = new CardView(this);
         ConstraintLayout c = new ConstraintLayout(this);
-        ImageButton d = new ImageButton(this);
+        final ImageButton d = new ImageButton(this);
+        TextView e = new TextView(this);
+        e.setText("TRAIT");
+        TextView descrip = new TextView(this);
+        descrip.setText("DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION");
+        descrip.setLines(4);
+        a.setId(View.generateViewId());
+        b.setId(View.generateViewId());
+        c.setId(View.generateViewId());
+        d.setId(View.generateViewId());
+        e.setId(View.generateViewId());
+        descrip.setId(++id);
+
+
+
         b.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         c.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-
+        b.setCardBackgroundColor(getResources().getColor(R.color.lightgreen));
         d.setLayoutParams(new LinearLayout.LayoutParams(250, 250));
 
         final ViewStub stub = new ViewStub(this);
@@ -86,28 +104,37 @@ public class StartPage extends AppCompatActivity
 
 
         a.addView(b);
-        a.addView(stub);
 
         b.addView(c);
         d.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (stub.getParent() != null) {
-                    stub.inflate();
-                    Log.d(stub.toString(), "inflate");
-                }
-                else if (stub.isShown()){
-                    stub.setVisibility(View.VISIBLE);
-                    Log.d(stub.toString(), "visible");
-                }
-                else{
-                    stub.setVisibility(View.GONE);
-                    Log.d(stub.toString(),"gone");
-                }
+                d.setLayoutParams(new ConstraintLayout.LayoutParams(400,400));
             }
+
         });
 
+        if (findViewById(R.id.question_next_button) != null)
+            findViewById(R.id.question_next_button).setEnabled(true);
+        c.addView(e);
         c.addView(d);
+        c.addView(descrip);
+
+        ConstraintSet cs = new ConstraintSet();
+        cs.clone(c);
+        cs.connect(e.getId(), ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP, 10);
+        cs.connect(e.getId(), ConstraintSet.LEFT, ConstraintSet.PARENT_ID, ConstraintSet.LEFT, 20);
+
+        cs.connect(d.getId(), ConstraintSet.TOP, e.getId(), ConstraintSet.BOTTOM, 10);
+        cs.connect(d.getId(), ConstraintSet.LEFT, ConstraintSet.PARENT_ID, ConstraintSet.LEFT, 10);
+
+        cs.connect(descrip.getId(), ConstraintSet.LEFT, d.getId(), ConstraintSet.RIGHT, 10);
+        cs.connect(descrip.getId(), ConstraintSet.TOP, e.getId(), ConstraintSet.BOTTOM, 10);
+
+        cs.applyTo(c);
+
+
+
 
         View test2 = getLayoutInflater().inflate(R.layout.plant_standard_linear_scroll, null);
 
