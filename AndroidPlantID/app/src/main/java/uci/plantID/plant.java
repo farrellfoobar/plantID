@@ -78,7 +78,12 @@ public class plant implements Comparable<plant>
     //This default constructor exists almost exclusively to allow us to build the queryPlant, it might not be wise to allow empty plants into the database
     public plant()
     {
-
+        this.plantGroup         = new ArrayList<>();
+        this.leafType           = new ArrayList<>();
+        this.leafArrangement    = new ArrayList<>();
+        this.growthForm         = new ArrayList<>();
+        this.flowerColor        = new ArrayList<>();
+        this.flowerSymetry      = new ArrayList<>();
     }
 
     /* TODO: This isnt a very good compareTo method for out purposes, because we would like a plant that is close to another plant (in the arraylist) to be similar*/
