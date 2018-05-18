@@ -1,5 +1,6 @@
 package uci.plantID;
 
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
@@ -13,6 +14,7 @@ import android.view.ViewStub;
 import android.widget.CheckBox;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -57,12 +59,32 @@ public class StartPage extends AppCompatActivity
         super.onCreate(savedInstanceState);
         init();
 
+        //setContentView(R.layout.image_testing); //for testing, please leave this line and the layout for more testing
+
         setContentView(R.layout.activity_start_page);
+    }
+
+    //TODO: THIS METHOD IS FOR TESTING, you can feel free to delete it but I left so you can see how it works
+    public void imageTesting( View view)
+    {
+        Log.d("!!!!! TESTING !!!!!", "HERERERERERERERERE");
+        try {
+            db = new plantDatabase( this.getAssets() );
+        }catch( Exception e )
+        {
+            Log.d( "----ERROR----",  e.getMessage() );
+        }
+
+        ImageView drawable = (ImageView) findViewById(R.id.imageToBeReplaced);
+        Log.d("!!!!! TESTING !!!!!", Integer.toString( db.size() ) );
+        plant p = db.getPlant(0);
+        Log.d("!!!!! TESTING !!!!!", p.getCommonName());
+        drawable.setImageDrawable( p.getImage() );
     }
 
     private void init(){
         try {
-            db = new plantDatabase( new InputStreamReader( this.getAssets().open("plants.JSON") ));
+            db = new plantDatabase( this.getAssets() );
         }catch( Exception e )
         {
             Log.d( "----ERROR----",  e.getMessage() );

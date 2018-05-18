@@ -1,18 +1,11 @@
 package uci.plantID;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.res.AssetManager;
-import android.util.Log;
-
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 import static uci.plantID.plant.NUM_ATTRIB;
@@ -20,15 +13,15 @@ import static uci.plantID.plant.NUM_ATTRIB;
 public class plantDatabase extends Activity
 {
     private ArrayList<plant> plants;
-    final private String location = "plantDB.JSON";
+    final private String location = "plants.JSON";
 
     //NOTE: If the writing of this database is made easier by implementing some kind of writeToJSON() and readFromJSON() method for the plant object feel free to do that
 
-    public plantDatabase( InputStreamReader in ) throws IllegalArgumentException, java.io.FileNotFoundException, java.io.IOException, org.json.simple.parser.ParseException, org.json.JSONException
+    public plantDatabase( AssetManager assetManager ) throws IllegalArgumentException, java.io.FileNotFoundException, java.io.IOException, org.json.simple.parser.ParseException, org.json.JSONException
     {
         plants = new ArrayList<>();
         JSONParser parser = new JSONParser();
-        JSONArray plantArray = (JSONArray) parser.parse( in );
+        JSONArray plantArray = (JSONArray) parser.parse( new InputStreamReader( assetManager.open(location) ) );
         JSONArray attributeArrayJSON;
         String [] attributeArray = new String[ NUM_ATTRIB ];
 
@@ -46,6 +39,7 @@ public class plantDatabase extends Activity
             }
 
             plants.add( new plant( attributeArray ) );
+            plants.get( plants.size()-1 ).setImage( assetManager );
         }
     }
 
@@ -113,4 +107,8 @@ public class plantDatabase extends Activity
             return query;   //query is not in db
     }
 
+    public plant getPlant( int i)
+    {
+        return this.plants.get(i);
+    }
 }

@@ -1,21 +1,20 @@
 package uci.plantID;
 
-import android.util.JsonWriter;
+import android.content.res.AssetManager;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.util.Log;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.json.*;
+
 
 public class plant implements Comparable<plant>
 {
-
     //to keep things consistent I simply took the object variable and added valid to the front and s to the end, so there are some weird spellings
     public static final List<String> validPlantGroups = Arrays.asList( "tree", "grass", "shrub", "forb", "succulent" );
     //Cylindropuntia prolifera is the only plant with N.A. as its valid leaf form (its a cactus), Im not sure how to handle that, but this works
@@ -25,10 +24,13 @@ public class plant implements Comparable<plant>
     public static final List<String> validFlowerColors = Arrays.asList("white", "yellow", "red", "orange", "blue", "purple", "green", "pink", "N.A.");
     public static final List<String> validFlowerSymetrys = Arrays.asList("radial", "bilateral", "asymmertical");
 
+    public static final String plantPictureDirectory = "plantPictures";     //this is NOT for images of terms
     public static final int NUM_ATTRIB = 8;   //6 attributes + scientific name and common name
 
     private String scientificName;
     private String commonName;
+    private String code;
+    private Drawable image;
     private ArrayList<String> plantGroup;
     private ArrayList<String> leafType;
     private ArrayList<String> leafArrangement;
@@ -46,6 +48,9 @@ public class plant implements Comparable<plant>
         this.flowerSymetry      = new ArrayList<>();
         this.setScientificName( scientificName );
         this.setCommonName( commonName );
+        //                          first three characters             +              first three after a space
+        this.code = scientificName.substring(0, 3) + scientificName.split(" ")[1].substring(0, 3);
+
         this.addPlantGroup( plantGroup.split(", ") );
         this.addLeafArrangement( leafArrangement.split(", ") );
         this.addLeafType( leafType.split(", ") );
@@ -67,6 +72,10 @@ public class plant implements Comparable<plant>
         this.flowerSymetry      = new ArrayList<>();
         this.setScientificName(     attribs[0] );
         this.setCommonName(         attribs[1] );
+
+        //                          first three characters             +              first three after a space
+        this.code = scientificName.substring(0, 3) + scientificName.split(" ")[1].substring(0, 3);
+
         this.addPlantGroup(         attribs[2].split(", ") );
         this.addLeafType(           attribs[3].split(", ") );
         this.addLeafArrangement(    attribs[4].split(", ") );
@@ -201,6 +210,28 @@ public class plant implements Comparable<plant>
     public String getCommonName()
     {
         return this.commonName;
+    }
+
+    public void setImage(AssetManager assetManager ) throws java.io.IOException
+    {
+        try
+        {
+            Drawable d = Drawable.createFromStream( assetManager.open(plantPictureDirectory + "/" + this.code.toUpperCase() + "_Flower.jpg"), null );
+            //Drawable d = Drawable.createFromStream( assetManager.open(plantPictureDirectory + "/" + "ACMGLA.jpg"), null );
+            this.image = d;
+        }
+        catch( java.io.IOException e)
+        {
+            Log.d("!!!!! ERROR !!!!!: ", e.toString() );
+            for( StackTraceElement t : e.getStackTrace())
+                Log.d("", t.toString());
+        }
+
+    }
+
+    public Drawable getImage()
+    {
+        return this.image;
     }
 
     public void addPlantGroup( String plantGroup )
