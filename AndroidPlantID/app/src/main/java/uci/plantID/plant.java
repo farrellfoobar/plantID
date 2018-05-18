@@ -30,7 +30,7 @@ public class plant implements Comparable<plant>
     private String scientificName;
     private String commonName;
     private String code;
-    private Drawable image;
+    private ArrayList<Drawable> images;
     private ArrayList<String> plantGroup;
     private ArrayList<String> leafType;
     private ArrayList<String> leafArrangement;
@@ -50,6 +50,7 @@ public class plant implements Comparable<plant>
         this.setCommonName( commonName );
         //                          first three characters             +              first three after a space
         this.code = scientificName.substring(0, 3) + scientificName.split(" ")[1].substring(0, 3);
+        this.images = new ArrayList<Drawable>();
 
         this.addPlantGroup( plantGroup.split(", ") );
         this.addLeafArrangement( leafArrangement.split(", ") );
@@ -75,6 +76,7 @@ public class plant implements Comparable<plant>
 
         //                          first three characters             +              first three after a space
         this.code = scientificName.substring(0, 3) + scientificName.split(" ")[1].substring(0, 3);
+        this.images = new ArrayList<Drawable>();
 
         this.addPlantGroup(         attribs[2].split(", ") );
         this.addLeafType(           attribs[3].split(", ") );
@@ -218,7 +220,9 @@ public class plant implements Comparable<plant>
         {
             Drawable d = Drawable.createFromStream( assetManager.open(plantPictureDirectory + "/" + this.code.toUpperCase() + "_Flower.jpg"), null );
             //Drawable d = Drawable.createFromStream( assetManager.open(plantPictureDirectory + "/" + "ACMGLA.jpg"), null );
-            this.image = d;
+            ArrayList<Drawable> images = new ArrayList<>();
+            images.add(d);
+            this.images = images;
         }
         catch( java.io.IOException e)
         {
@@ -229,9 +233,9 @@ public class plant implements Comparable<plant>
 
     }
 
-    public Drawable getImage()
+    public ArrayList<Drawable> getImage()
     {
-        return this.image;
+        return this.images;
     }
 
     public void addPlantGroup( String plantGroup )

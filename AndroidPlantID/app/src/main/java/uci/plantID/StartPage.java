@@ -59,9 +59,9 @@ public class StartPage extends AppCompatActivity
         super.onCreate(savedInstanceState);
         init();
 
-        //setContentView(R.layout.image_testing); //for testing, please leave this line and the layout for more testing
+        setContentView(R.layout.image_testing); //for testing, please leave this line and the layout for more testing
 
-        setContentView(R.layout.activity_start_page);
+        //setContentView(R.layout.activity_start_page);
     }
 
     //TODO: THIS METHOD IS FOR TESTING, you can feel free to delete it but I left so you can see how it works
@@ -79,7 +79,7 @@ public class StartPage extends AppCompatActivity
         Log.d("!!!!! TESTING !!!!!", Integer.toString( db.size() ) );
         plant p = db.getPlant(0);
         Log.d("!!!!! TESTING !!!!!", p.getCommonName());
-        drawable.setImageDrawable( p.getImage() );
+        drawable.setImageDrawable( p.getImage().get(0) );
     }
 
     private void init(){
