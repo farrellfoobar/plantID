@@ -59,9 +59,9 @@ public class StartPage extends AppCompatActivity
         super.onCreate(savedInstanceState);
         init();
 
-        setContentView(R.layout.image_testing); //for testing, please leave this line and the layout for more testing
+        //setContentView(R.layout.image_testing); //for testing, please leave this line and the layout for more testing
 
-        //setContentView(R.layout.activity_start_page);
+        setContentView(R.layout.activity_start_page);
     }
 
     //TODO: THIS METHOD IS FOR TESTING, you can feel free to delete it but I left so you can see how it works
