@@ -14,15 +14,34 @@ public class StartPage extends AppCompatActivity
     public static plantDatabase db;
     private ViewController control;
 
-
-    //TODO: DONE
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_page);
 
+
         init();
+
+        imageTesting();
+    }
+
+    //TODO: THIS METHOD IS FOR TESTING, you can feel free to delete it but I left so you can see how it works
+    public void imageTesting()
+    {
+        Log.d("!!!!! TESTING !!!!!", "HERERERERERERERERE");
+        try {
+            db = new plantDatabase( this.getAssets() );
+        }catch( Exception e )
+        {
+            Log.d( "----ERROR----",  e.getMessage() );
+        }
+
+        ImageView drawable = (ImageView) findViewById(R.id.imageView);
+        Log.d("!!!!! TESTING !!!!!", Integer.toString( db.size() ) );
+        plant p = db.getPlant(0);
+        Log.d("!!!!! TESTING !!!!!", p.getCommonName());
+        drawable.setImageDrawable( p.getImage().get(0) );
 
     }
 
