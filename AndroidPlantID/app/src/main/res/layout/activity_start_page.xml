@@ -28,7 +28,7 @@
         android:layout_marginStart="148dp"
         android:clickable="true"
         android:focusable="true"
-        android:onClick="respond"
+        android:onClick="nextButton"
         android:text="@string/search"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

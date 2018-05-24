@@ -1,28 +1,10 @@
 package uci.plantID;
 
-import android.graphics.drawable.Drawable;
-import android.media.Image;
-import android.support.constraint.ConstraintLayout;
-import android.support.constraint.ConstraintSet;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewStub;
-import android.widget.CheckBox;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
-import org.w3c.dom.Text;
-
-import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.ArrayList;
 
 
 public class StartPage extends AppCompatActivity
@@ -36,11 +18,11 @@ public class StartPage extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_start_page);
+
+
         init();
 
-        //setContentView(R.layout.image_testing); //for testing, please leave this line and the layout for more testing
-
-        setContentView(R.layout.activity_start_page);
         imageTesting();
     }
 
@@ -60,457 +42,42 @@ public class StartPage extends AppCompatActivity
         plant p = db.getPlant(0);
         Log.d("!!!!! TESTING !!!!!", p.getCommonName());
         drawable.setImageDrawable( p.getImage().get(0) );
+
     }
 
     private void init(){
         try {
-            db = new plantDatabase( this.getAssets() );
+            db = new plantDatabase(this.getAssets());
         }catch( Exception e )
         {
             Log.d( "----ERROR----",  e.getMessage() );
         }
         queryPlant = new plant();
-        db = null;
         control = new ViewController(this);
-    }
-    static int counter = 0;
-    public void respond(View view){
-        int id = 1000;
-        //control.respond(this, view);
-        View test = getLayoutInflater().inflate(R.layout.plant_standard_linear_scroll, null);
-        LinearLayout a = test.findViewById(R.id.container);
-        CardView b = new CardView(this);
-        ConstraintLayout c = new ConstraintLayout(this);
-        final ImageButton d = new ImageButton(this);
-        TextView e = new TextView(this);
-        e.setText("TRAIT");
-        TextView descrip = new TextView(this);
-        descrip.setText("DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION");
-        descrip.setLines(4);
-        a.setId(View.generateViewId());
-        b.setId(View.generateViewId());
-        c.setId(View.generateViewId());
-        d.setId(View.generateViewId());
-        e.setId(View.generateViewId());
-        descrip.setId(++id);
-
-
-
-        b.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        c.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        b.setCardBackgroundColor(getResources().getColor(R.color.lightgreen));
-        d.setLayoutParams(new LinearLayout.LayoutParams(250, 250));
-
-        final ViewStub stub = new ViewStub(this);
-        stub.setLayoutResource(R.layout.test_stub);
-
-
-        a.addView(b);
-
-        b.addView(c);
-        d.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                d.setLayoutParams(new ConstraintLayout.LayoutParams(400,400));
-            }
-
-        });
-
-        if (findViewById(R.id.question_next_button) != null)
-            findViewById(R.id.question_next_button).setEnabled(true);
-        c.addView(e);
-        c.addView(d);
-        c.addView(descrip);
-
-        ConstraintSet cs = new ConstraintSet();
-        cs.clone(c);
-        cs.connect(e.getId(), ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP, 10);
-        cs.connect(e.getId(), ConstraintSet.LEFT, ConstraintSet.PARENT_ID, ConstraintSet.LEFT, 20);
-
-        cs.connect(d.getId(), ConstraintSet.TOP, e.getId(), ConstraintSet.BOTTOM, 10);
-        cs.connect(d.getId(), ConstraintSet.LEFT, ConstraintSet.PARENT_ID, ConstraintSet.LEFT, 10);
-
-        cs.connect(descrip.getId(), ConstraintSet.LEFT, d.getId(), ConstraintSet.RIGHT, 10);
-        cs.connect(descrip.getId(), ConstraintSet.TOP, e.getId(), ConstraintSet.BOTTOM, 10);
-
-        cs.applyTo(c);
-
-
-
-
-        View test2 = getLayoutInflater().inflate(R.layout.plant_standard_linear_scroll, null);
-
-
-        if (counter == 0)
-            setContentView(test);
-        else
-            setContentView(test2);
-        ++counter;
-    }
-/*
-    //this method is called when the next button on the activity_main page is pressed, it must take View view as a parameter, and view give access to certain ui elements
-    //TODO: DONE
-    public void respondToNextButton(View view)
-    {
-        buildQuery(view);
-        ++viewTracker;
-        reset();
-        setView(view);
+        testPlantImage();
     }
 
-    public void buildQuery(View view) {
-        int parentID = ((ViewGroup) view.getParent()).getId();
-        View parent = findViewById(parentID);
-        CheckBox box;
-
-        queries.add(new ArrayList<String>());
-
-        //TODO: fix temp bad query building control flow
-        if (isQuestionTemplate()) {
-            ViewGroup container = findViewById(R.id.question_container);
-
-            queries.add(new ArrayList<String>());
-            for (int i = 0; i < container.getChildCount(); ++i){
-                // gc should take care of problem with back button and redoing answers
-                box = (CheckBox) container.getChildAt(i);
-                if (isChecked(box)){
-                    queries.get(viewTracker - 1).add(box.getText().toString());
-                }
-            }
-            //Log.d("queries", String.valueOf(Arrays.toString(queries[viewTracker-1])));
-        }
-        else if (viewTracker == (question_views.length - 1)){
-            CheckBox flower_checkbox = findViewById(R.id.is_flower_checkbox1);
-            has_flowers = isChecked(flower_checkbox);
-        }
-        else if (viewTracker == question_views.length){
-            ViewGroup table = findViewById(R.id.question_container);
-            Log.d("# children: ", String.valueOf(table.getChildCount()));
-            queries.add(new ArrayList<String>());
-            for (int i = 0; i < table.getChildCount(); ++i){
-                ViewGroup tableRow = ((ViewGroup) table.getChildAt(i));
-                for (int j = 0; j < tableRow.getChildCount(); ++j){
-                    box = (CheckBox) tableRow.getChildAt(j);
-                    if (isChecked(box)){
-                        queries.get(viewTracker - 1).add(box.getTag().toString());
-                    }
-                }
-            }
-            //Log.d("queries", String.valueOf(Arrays.toString(queries[viewTracker-2])));
-
-        }
-    }
-    private boolean isQuestionTemplate(){
-        // TODO: fix temp method for distinguishing template questions
-
-        return viewTracker != 0 &&
-                viewTracker != (question_views.length - 1) &&
-                viewTracker != question_views.length &&
-                viewTracker < (question_views.length + question_flower_views.length);
+    private void testPlantImage(){
+        ImageView image = (ImageView) findViewById(R.id.imageView);
+        plant p = db.getPlant(0);
+        image.setImageDrawable(p.getImage().get(0));
     }
 
-    private void buildPlant(){
-        // TODO: optimize
-        print2DArray(queries);
-        /*
-        String[] test = queries.get(0).toArray(new String[0]);
-        for (String s : test){
-            Log.d("", s);
-        }
-        Log.d("1:", test.toString());
-        Log.d("bool:", String.valueOf(queries.get(0).toArray(new String[0]) == null));
-        queryPlant.addPlantGroup(queries.get(0).toArray(new String[0]));
-        queryPlant.addLeafType(queries.get(1).toArray(new String[0]));
-        queryPlant.addLeafArrangement(queries.get(2).toArray(new String[0]));
-        queryPlant.addGrowthForm(queries.get(3).toArray(new String[0]));
-        if (has_flowers){
-            queryPlant.addFlowerColor("N.A.");
-        }
-        else {
-            queryPlant.addFlowerColor(queries.get(4).toArray(new String[0]));
-            queryPlant.addFlowerSymetry(queries.get(5).toArray(new String[0]));
-        }
-        Log.d("plant:", queryPlant.toString());
-    }
-
-    //the previous button doesn't exists on the layouts but this is the method it should call
-    public void respondToPrevButton(View view)
-    {
-        if (viewTracker > 0 && viewTracker < question_views.length + question_flower_views.length) {
-            queries.remove(queries.size() - 1);
-        }
-        --viewTracker;
-        reset();
-        setView(view);
-    }
-
-    public void setView(View view) {
-        // TODO: Temporary view flow control
-
-        if (viewTracker < question_views.length) {
-            setContentView(question_views[viewTracker]);
-            if (viewTracker == (question_views.length - 1)) {
-                // set has flower layout next button to true
-
-                Button nextButton = findViewById(R.id.is_flower_template).findViewById(R.id.question_next);
-                nextButton.setEnabled(true);
-            }
-
-        }
-        else if (has_flowers && viewTracker < (question_views.length + question_flower_views.length)) {
-            setContentView(question_flower_views[viewTracker - question_views.length]);
-        }
-        else{
-            setContentView(R.layout.results);
-            buildPlant();
-            ArrayList<rankedPlant> results = db.getGreatestMatch(queryPlant, numResults);
-            Log.d("results", Arrays.toString(results.toArray()));
-            Log.d("plant", results.get(0).getPlant().toString());
-            buildResultsPage(results);
-        }
-    }
-
-    private void buildResultsPage(ArrayList<rankedPlant> results){
-        ViewGroup container = findViewById(R.id.results_container);
-        String text = "";
-        Log.d("", container.toString());
-        TextView[] plants = new TextView[results.size()];
-        for (int i = 0; i < results.size(); ++i){
-            plants[i] = new TextView(this);
-            text = results.get(i).getPlant().getCommonName() + "\n      Rank: " + results.get(i).getRank();
-            plants[i].setText(text);
-            container.addView(plants[i]);
-        }
+    public void nextButton(View view){
+        control.nextButton(this, view, queryPlant, db);
 
     }
 
-    public void respondToButton(View view)
-    {
-
-        switch ( viewTracker )
-        {
-            case 0: //start page
-                handleStartPageButton(view);
-                break;
-            case 1: //plant group question
-                handlePlantGroupButton(view);
-                break;
-            case 2: //leaf shape question
-                handleLeafShapeButtonButton(view);
-                break;
-            case 3: //leaf arrangement question
-                handleLeafArrangementButton(view);
-                break;
-            case 4: //plant growth form question
-                handleGrowthFormButton(view);
-                break;
-            case 5: //is flower question
-                handleIsFlowerButton(view);
-                break;
-            case 6: //flower color question
-                handleFlowerColorButton(view);
-                break;
-            case 7: //flower symmetry question
-                handleFlowerSymmetryButton(view);
-                break;
-
-        }
+    public void backButton(View view){
+        control.backButton(this, view, queryPlant, db);
     }
 
-    public void handleStartPageButton( View view)
-    {
-        //This is mostly to keep the format the same:
-        // The only button on the start page is the next button, so theoretically this method
-        //should never be called, unless we add more button at the start
+    public void homeButton(View view){
+        queryPlant = new plant();
+        control.homeButton(this, view);
+    }
+    public void respondToButton(View view){
+        control.respondToButton(this, view);
     }
 
-    public void handlePlantGroupButton(View view)
-    {
-        boolean checked = isChecked(view);
-        Button nextButton = findViewById(R.id.plant_group_template).findViewById(R.id.question_next);
-
-        // require minimum API 16 for getParentForAccessibility
-        // get parent view of the checkbox
-        ViewGroup parent = (ViewGroup) view.getParent();
-
-        // count how many checkboxes have been click
-        setCheckbox_counter(checked);
-
-        // diagnostics for debugging
-        /*
-        Log.d("checked", String.valueOf(checked));
-        Log.d("counter", String.valueOf(checkbox_counter));
-        Log.d("view id", String.valueOf(view.getId()));
-        if (parent != null){
-            Log.d("number of children", String.valueOf(((ViewGroup) view.getParent()).getChildCount()));
-        }
-
-
-        enableNextButton(view, nextButton);
-
-        limitCheckbox(parent, true, 5);
-
-    }
-
-
-    //TODO: Copy the switch from handlePlantGroupButton with appropriate button names and modify the query plant accordingly
-    public void handleLeafShapeButtonButton( View view)
-    {
-        boolean checked = isChecked(view);
-        Button nextButton = findViewById(R.id.leaf_shape_template).findViewById(R.id.question_next);
-
-        // require minimum API 16 for getParentForAccessibility
-        // get parent view of the checkbox
-        ViewGroup parent = (ViewGroup) view.getParent();
-
-        // count how many checkboxes have been click
-        setCheckbox_counter(checked);
-
-
-        enableNextButton(view, nextButton);
-
-        limitCheckbox(parent, true, 6);
-    }
-
-    //TODO: Copy the switch from handlePlantGroupButton with appropriate button names and modify the query plant accordingly
-    public void handleLeafArrangementButton( View view)
-    {
-        boolean checked = isChecked(view);
-        Button nextButton = findViewById(R.id.leaf_arrangement_template).findViewById(R.id.question_next);
-
-        // require minimum API 16 for getParentForAccessibility
-        // get parent view of the checkbox
-        ViewGroup parent = (ViewGroup) view.getParent();
-
-        // count how many checkboxes have been click
-        setCheckbox_counter(checked);
-
-
-        enableNextButton(view, nextButton);
-
-        limitCheckbox(parent, true, 6);
-    }
-
-    //TODO: Copy the switch from handlePlantGroupButton with appropriate button names and modify the query plant accordingly
-    public void handleGrowthFormButton( View view)
-    {
-        boolean checked = isChecked(view);
-        Button nextButton = findViewById(R.id.growth_form_template).findViewById(R.id.question_next);
-        // require minimum API 16 for getParentForAccessibility
-        // get parent view of the checkbox
-        ViewGroup parent = (ViewGroup) view.getParent();
-
-        // count how many checkboxes have been click
-        setCheckbox_counter(checked);
-
-
-        enableNextButton(view, nextButton);
-
-        limitCheckbox(parent, true, 9);
-
-    }
-
-    public void handleIsFlowerButton(View view){
-        //boolean checked = isChecked(view);
-        //Button nextButton = findViewById(R.id.is_flower_template).findViewById(R.id.question_next);
-
-        // require minimum API 16 for getParentForAccessibility
-        // get parent view of the checkbox
-        //ViewGroup parent = (ViewGroup) view.getParent();
-
-        // count how many checkboxes have been click
-        //setCheckbox_counter(checked);
-
-        //nextButton.setEnabled(true);
-        //limitCheckbox(parent, true, 1);
-    }
-
-    public void handleFlowerColorButton(View view){
-        Button nextButton = findViewById(R.id.flower_color_template).findViewById(R.id.question_next);
-        nextButton.setEnabled(true);
-
-    }
-
-    public void handleFlowerSymmetryButton(View view){
-        boolean checked = isChecked(view);
-        Button nextButton = findViewById(R.id.flower_symmetry_template).findViewById(R.id.question_next);
-
-        // require minimum API 16 for getParentForAccessibility
-        // get parent view of the checkbox
-        ViewGroup parent = (ViewGroup) view.getParent();
-
-        // count how many checkboxes have been click
-        setCheckbox_counter(checked);
-
-
-        enableNextButton(view, nextButton);
-
-        limitCheckbox(parent, true, 3);
-    }
-
-    private boolean isChecked(View view) {
-        return ((CheckBox) view).isChecked();
-    }
-
-    private void limitCheckbox(ViewGroup parent, boolean isLimited, int limit) {
-        // limit how many checkboxes are allowed to be checked if true
-        if (checkbox_counter >= limit) {
-            disableAllCheckboxes(parent);
-        }
-        else{
-            enableAllView(parent);
-        }
-    }
-
-    private void enableNextButton(View view, Button nextButton){
-        if (checkbox_counter >= 1) {
-            nextButton.setEnabled(true);
-        }
-        else {
-            nextButton.setEnabled(false);
-        }
-
-    }
-
-    private void disableAllCheckboxes(ViewGroup parent){
-        View child;
-        Log.d("check disabled", "disable other checkboxes");
-        for (int i = 0; i < parent.getChildCount(); ++i){
-            child = parent.getChildAt(i);
-            if (!((CheckBox) parent.getChildAt(i)).isChecked()){
-                child.setEnabled(false);
-            }
-        }
-    }
-
-    private void enableAllView(ViewGroup parent){
-        View child;
-        for (int i = 0; i < parent.getChildCount(); ++i){
-            child = parent.getChildAt(i);
-            if (!child.isEnabled()){
-                child.setEnabled(true);
-            }
-        }
-    }
-
-    private void setCheckbox_counter(boolean isChecked){
-        if (isChecked){
-            ++checkbox_counter;
-        }
-        else{
-            --checkbox_counter;
-        }
-    }
-
-    private void print2DArray(ArrayList<ArrayList<String>> array){
-        String log = "";
-        for (ArrayList<String> a : array){
-            log += a.toString() + "\n";
-        }
-        Log.d("2D Query:", log);
-    }
-
-    private void reset(){
-        checkbox_counter = 0;
-    }*/
 }
