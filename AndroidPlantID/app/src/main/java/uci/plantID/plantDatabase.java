@@ -43,6 +43,42 @@ public class plantDatabase extends Activity
         }
     }
 
+    //this constructor is exclusively for testing
+    public plantDatabase( InputStreamReader isr ) throws java.io.IOException, org.json.simple.parser.ParseException, Exception
+    {
+        plants = new ArrayList<>();
+        JSONParser parser = new JSONParser();
+
+        JSONArray plantArray = (JSONArray) parser.parse(isr);
+
+        JSONArray attributeArrayJSON;
+        String [] attributeArray = new String[ NUM_ATTRIB ];
+
+        for( int i = 0; i < plantArray.size(); i++)
+        {
+            //Cast the JSONobject to a JSON Array (the array that represents a specific plant)
+            attributeArrayJSON = ((JSONArray) plantArray.get(i) );
+
+            if( attributeArrayJSON.size() != NUM_ATTRIB )
+                throw new IllegalArgumentException("There appears to be more attributes in the JSON than are supposed to be");
+
+
+            for( int j = 0; j < NUM_ATTRIB; j++)
+            {
+                attributeArray[j] = (String) attributeArrayJSON.get(j);
+            }
+
+            try {
+                plants.add(new plant(attributeArray));
+            }catch (Exception e)
+            {
+                throw new Exception( "The following parse error occured on plant #" + i + "\n" + e.getMessage() );
+                //Log.d("---- PARSE ERROR ----", " The following parse error occured on plant #" + i);
+                //Log.d("---- PARSE ERROR ----", e.getMessage() );
+            }
+        }
+    }
+
     /*
     TODO: look for the best numToBeRanked plants in the database, being sure to stop looking at a particular as soon as it is worst than the wost one on the short list  */
     //TODO: THIS IS THE METHOD THAT ISNT WORKING
