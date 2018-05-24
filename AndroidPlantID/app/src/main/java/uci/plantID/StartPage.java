@@ -31,28 +31,7 @@ public class StartPage extends AppCompatActivity
     public static plant queryPlant;
     public static plantDatabase db;
     private ViewController control;
-/*
-    private static int viewTracker = 0;
-    private static int[] question_views = {
-            R.layout.activity_start_page,
-            R.layout.plant_group_question,
-            R.layout.leaf_shape_question,
-            R.layout.leaf_arrangement_question,
-            R.layout.plant_growth_form_question,
-            R.layout.is_flower
-    };
 
-    private static int[] question_flower_views = {
-            R.layout.flower_color_question,
-            R.layout.flower_symmetry_question
-    };
-    private static ArrayList<ArrayList<String>> queries = new ArrayList<>();
-    private static boolean has_flowers = false;
-    private static int checkbox_counter = 0;
-    private final int numResults = 5;*/
-
-
-    //TODO: DONE
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -62,10 +41,11 @@ public class StartPage extends AppCompatActivity
         //setContentView(R.layout.image_testing); //for testing, please leave this line and the layout for more testing
 
         setContentView(R.layout.activity_start_page);
+        imageTesting();
     }
 
     //TODO: THIS METHOD IS FOR TESTING, you can feel free to delete it but I left so you can see how it works
-    public void imageTesting( View view)
+    public void imageTesting()
     {
         Log.d("!!!!! TESTING !!!!!", "HERERERERERERERERE");
         try {
@@ -75,7 +55,7 @@ public class StartPage extends AppCompatActivity
             Log.d( "----ERROR----",  e.getMessage() );
         }
 
-        ImageView drawable = (ImageView) findViewById(R.id.imageToBeReplaced);
+        ImageView drawable = (ImageView) findViewById(R.id.imageView);
         Log.d("!!!!! TESTING !!!!!", Integer.toString( db.size() ) );
         plant p = db.getPlant(0);
         Log.d("!!!!! TESTING !!!!!", p.getCommonName());
