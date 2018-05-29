@@ -19,8 +19,8 @@ public class plant implements Comparable<plant>
     public static final List<String> validPlantGroups = Arrays.asList( "tree", "grass", "shrub", "forb", "succulent" );
     //Cylindropuntia prolifera is the only plant with N.A. as its valid leaf form (its a cactus), Im not sure how to handle that, but this works
     public static final List<String> validLeafTypes = Arrays.asList("simple", "lobed", "pinnate", "compound/ deeply divided", "blade", "N.A.");
-    public static final List<String> validLeafArrangements = Arrays.asList("alternate", "opposite", "bundled", "whorled", "basal", "rosette");
-    public static final List<String> validGrowthForms = Arrays.asList("prostrate", "decumbent", "ascending", "erect", "mat", "clump-forming", "rosette", "basal", "vine");
+    public static final List<String> validLeafArrangements = Arrays.asList("alternate", "opposite", "bundled", "whorled", "basal/ rosette");
+    public static final List<String> validGrowthForms = Arrays.asList("prostrate", "decumbent", "ascending", "erect", "mat", "clump-forming", "basal/ rosette", "vine");
     public static final List<String> validFlowerColors = Arrays.asList("white", "yellow", "red", "orange", "blue", "purple", "green", "pink", "N.A.");
     public static final List<String> validFlowerSymetrys = Arrays.asList("radial", "bilateral", "asymmertical");
 
