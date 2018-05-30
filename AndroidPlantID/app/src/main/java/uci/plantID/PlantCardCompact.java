@@ -244,11 +244,11 @@ public class PlantCardCompact extends CardView{
                 break;
             }
             case ("clump-forming"): {
-                drawable_id = R.drawable.ic_launcher_background;
+                drawable_id = R.drawable.clump;
                 break;
             }
             case ("vine"): {
-                drawable_id = R.drawable.ic_launcher_background;
+                drawable_id = R.drawable.vine;
                 break;
             } case ("radial"): {
                 drawable_id = R.drawable.radial;
