@@ -147,72 +147,100 @@ public class PlantCardCompact extends CardView{
     private int chooseImage(String name){
         int drawable_id;
         switch(name) {
+            //Plant Group
+            case ("tree"): {
+                drawable_id = R.drawable.tree;
+                break;
+            }
+            case ("grass"): {
+                drawable_id = R.drawable.grass;
+                break;
+            }
+            case ("shrub"): {
+                drawable_id = R.drawable.shrub;
+                break;
+            }
+            case ("forb"): {
+                drawable_id = R.drawable.forb;
+                break;
+            }
+            case ("succulent"): {
+                drawable_id = R.drawable.succulent;
+                break;
+            }
+            //LeafShape
             case ("simple"): {
-                drawable_id = R.drawable.simple_icon;
+                drawable_id = R.drawable.simple;
                 break;
             }
             case ("lobed"): {
-                drawable_id = R.drawable.lobed_icon;
+                drawable_id = R.drawable.lobed;
                 break;
             }
             case ("pinnate"): {
-                drawable_id = R.drawable.pinnate_icon;
+                drawable_id = R.drawable.pinnate;
                 break;
             }
             case ("compound/ deeply divided"): {
-                drawable_id = R.drawable.compond_deeply_divided_icon;
+                drawable_id = R.drawable.deeplydivided;
                 break;
             }
             case ("blade"): {
-                drawable_id = R.drawable.ic_launcher_background;
+                drawable_id = R.drawable.blade;
                 break;
             }
             case ("N.A."): {
-                drawable_id = R.drawable.ic_launcher_background;
+                drawable_id = R.drawable.na;
                 break;
             }
+            //Leaf Arrangement
             case ("alternate"): {
-                drawable_id = R.drawable.alternate_icon;
+                drawable_id = R.drawable.alternate;
                 break;
             }
             case ("opposite"): {
-                drawable_id = R.drawable.opposite_icon;
+                drawable_id = R.drawable.opposite;
                 break;
             }
             case ("bundled"): {
-                drawable_id = R.drawable.bundled_icon;
+                drawable_id = R.drawable.bundled;
                 break;
             }
             case ("whorled"): {
-                drawable_id = R.drawable.whorled_icon;
+                drawable_id = R.drawable.whorled;
+                break;
+            }
+            case ("basal/ rosette"): {
+                drawable_id = R.drawable.basalrosette;
                 break;
             }
             case ("basal"): {
-                drawable_id = R.drawable.basalrosette_icon;
+                drawable_id = R.drawable.basalrosette;      //should not be needed
                 break;
             }
             case ("rosette"): {
-                drawable_id = R.drawable.basalrosette_icon;
+                drawable_id = R.drawable.basalrosette;      //should not be needed
                 break;
             }
+            //Growth Form
             case ("prostrate"): {
-                drawable_id = R.drawable.prostrate_icon;
+                drawable_id = R.drawable.prostrate;
                 break;
             }
             case ("decumbent"): {
-                drawable_id = R.drawable.decumbent_icon;
+                drawable_id = R.drawable.decumbent;
                 break;
             }
             case ("ascending"): {
-                drawable_id = R.drawable.ascending_icon;
+                drawable_id = R.drawable.ascending;
                 break;
             }
             case ("erect"): {
-                drawable_id = R.drawable.erect_icon;
+                drawable_id = R.drawable.erect;
                 break;
             }
             case ("mat"): {
-                drawable_id = R.drawable.ic_launcher_background;
+                drawable_id = R.drawable.mat;
                 break;
             }
             case ("clump-forming"): {
@@ -223,14 +251,14 @@ public class PlantCardCompact extends CardView{
                 drawable_id = R.drawable.ic_launcher_background;
                 break;
             } case ("radial"): {
-                drawable_id = R.drawable.radial_icon;
+                drawable_id = R.drawable.radial;
                 break;
             } case ("bilateral"): {
-                drawable_id = R.drawable.bilateral_icon;
+                drawable_id = R.drawable.bilateral;
                 break;
             }
             case ("asymmertical"): {
-                drawable_id = R.drawable.assymetrical_icon;
+                drawable_id = R.drawable.assymetrical;
                 break;
             }
             default: {
