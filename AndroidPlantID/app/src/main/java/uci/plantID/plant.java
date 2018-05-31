@@ -5,6 +5,8 @@ import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.util.Log;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
@@ -23,6 +25,8 @@ public class plant implements Comparable<plant>
     public static final List<String> validGrowthForms = Arrays.asList("prostrate", "decumbent", "ascending", "erect", "mat", "clump-forming", "basal/ rosette", "vine");
     public static final List<String> validFlowerColors = Arrays.asList("white", "yellow", "red", "orange", "blue", "purple", "green", "pink", "N.A.");
     public static final List<String> validFlowerSymetrys = Arrays.asList("radial", "bilateral", "asymmertical");
+
+    public static final List<String> imageNames = Arrays.asList( "_Cot", "_Flower", "_Fruit", "_Leaf", "_Plant", "_Seedling" );
 
     public static final String plantPictureDirectory = "plantPictures";     //this is NOT for images of terms
     public static final int NUM_ATTRIB = 8;   //6 attributes + scientific name and common name
@@ -214,23 +218,63 @@ public class plant implements Comparable<plant>
         return this.commonName;
     }
 
-    public void setImage(AssetManager assetManager ) throws java.io.IOException
+    public void setImage(AssetManager assetManager )
     {
-        try
-        {
-            Drawable d = Drawable.createFromStream( assetManager.open(plantPictureDirectory + "/" + this.code.toUpperCase() + "_Flower.jpg"), null );
-            //Drawable d = Drawable.createFromStream( assetManager.open(plantPictureDirectory + "/" + "ACMGLA.jpg"), null );
-            ArrayList<Drawable> images = new ArrayList<>();
-            images.add(d);
-            this.images = images;
-        }
-        catch( java.io.IOException e)
-        {
-            Log.d("!!!!! ERROR !!!!!: ", e.toString() );
-            for( StackTraceElement t : e.getStackTrace())
-                Log.d("", t.toString());
-        }
+        ArrayList<Drawable> images = new ArrayList<>();
+        Drawable dJPG = null;
+        Drawable dPNG = null;
+        String imageName;
 
+        for( int i = 0; i < imageNames.size(); i++)
+        {
+            imageName = imageNames.get(i);
+            try {
+                dJPG = Drawable.createFromStream(assetManager.open(plantPictureDirectory + "/" + this.code.toUpperCase() + imageName + ".jpg"), null);
+            } catch( IOException e)
+            {
+                dJPG = null;
+            }
+            try {
+                dPNG = Drawable.createFromStream(assetManager.open(plantPictureDirectory + "/" + this.code.toUpperCase() + imageName + ".png"), null);
+            } catch( IOException e)
+            {
+                dPNG = null;
+            }
+
+            while( dJPG != null || dPNG != null )                                                                   //while we can find an image
+            {
+                Log.d("----LOG----", "in while");
+                if( dJPG != null)                                                                                   //add it to the returned list
+                    images.add( dJPG );
+                else
+                    images.add( dPNG );
+                                                                                                                    // EX: ACMGLA_COT.png and ACMGLA_COT2.png
+                if( !Character.isDigit( imageName.charAt( imageName.length()-1 ) ) )                                // if the file name does not end in a number
+                    imageName += "2";                                                                               //then add a 2
+                else
+                {
+                    int n = Character.getNumericValue( imageName.charAt( imageName.length()-1 ) );
+
+                    imageName = imageName.replace( "" + n, "" + n+1);                               //otherwise increment the # by 1
+                }
+
+                try {
+                    dJPG = Drawable.createFromStream(assetManager.open(plantPictureDirectory + "/" + this.code.toUpperCase() + imageName + ".jpg"), null);
+                } catch( IOException e)
+                {
+                    dJPG = null;
+                }
+                try {
+                    dPNG = Drawable.createFromStream(assetManager.open(plantPictureDirectory + "/" + this.code.toUpperCase() + imageName + ".png"), null);
+                } catch( IOException e)
+                {
+                    dPNG = null;
+                }
+
+            } //end while
+        } //end for
+
+        this.images = images;
     }
 
     public ArrayList<Drawable> getImage()

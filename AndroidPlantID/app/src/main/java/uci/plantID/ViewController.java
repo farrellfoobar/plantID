@@ -132,16 +132,19 @@ class ViewController {
             plant_image_scroll_container.setOrientation(LinearLayout.HORIZONTAL);
 
             plant_name.setText(plant.getPlant().getCommonName());
-            plant_rank.setText(String.valueOf(plant.getRank()));
+            plant_rank.setText(String.valueOf( String.format( "%.2f", plant.getRank() ) ));
             plant_image = new ImageView(activity);
             plant_image.setLayoutParams(new LinearLayout.LayoutParams(400,400));
             plant_image.setScaleType(ImageView.ScaleType.FIT_CENTER);
             plant_image.setAdjustViewBounds(true);
-            plant_image.setImageResource(R.drawable.ic_launcher_background);
-            plant_image_scroll_container.addView(plant_image);
+            //plant_image.setImageResource(R.drawable.ic_launcher_background); trying to remove placeholder image
+            //plant_image_scroll_container.addView(plant_image);
+
+            //This should be removed before we deliver because it will make us search for the images twice
             if (plant.getPlant().getImage().isEmpty()){
                 Log.d("", "plant image array is empty");
             }
+
             for (Drawable image : plant.getPlant().getImage()){
                 plant_image = new ImageView(activity);
                 plant_image.setLayoutParams(new LinearLayout.LayoutParams(400,400));

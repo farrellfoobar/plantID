@@ -22,8 +22,6 @@ public class StartPage extends AppCompatActivity
 
 
         init();
-
-        imageTesting();
     }
 
     //TODO: THIS METHOD IS FOR TESTING, you can feel free to delete it but I left so you can see how it works
@@ -34,7 +32,8 @@ public class StartPage extends AppCompatActivity
             db = new plantDatabase( this.getAssets() );
         }catch( Exception e )
         {
-            Log.d( "----ERROR----",  e.getMessage() );
+            Log.d( "----ERROR----",  e.toString() );
+            e.printStackTrace();
         }
 
         ImageView drawable = (ImageView) findViewById(R.id.imageView);
@@ -54,12 +53,12 @@ public class StartPage extends AppCompatActivity
         }
         queryPlant = new plant();
         control = new ViewController(this);
-        testPlantImage();
     }
 
     private void testPlantImage(){
         ImageView image = (ImageView) findViewById(R.id.imageView);
         plant p = db.getPlant(0);
+        Log.d("----LOG----", " plant is: " + p.getCommonName());
         image.setImageDrawable(p.getImage().get(0));
     }
 

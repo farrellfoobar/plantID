@@ -14,14 +14,16 @@ public class plantDatabase extends Activity
 {
     private ArrayList<plant> plants;
     final private String location = "plants.JSON";
+    private AssetManager assetManager;
 
     //NOTE: If the writing of this database is made easier by implementing some kind of writeToJSON() and readFromJSON() method for the plant object feel free to do that
 
     public plantDatabase( AssetManager assetManager ) throws IllegalArgumentException, java.io.FileNotFoundException, java.io.IOException, org.json.simple.parser.ParseException, org.json.JSONException
     {
+        this.assetManager = assetManager;
         plants = new ArrayList<>();
         JSONParser parser = new JSONParser();
-        JSONArray plantArray = (JSONArray) parser.parse( new InputStreamReader( assetManager.open(location) ) );
+        JSONArray plantArray = (JSONArray) parser.parse( new InputStreamReader( this.assetManager.open(location) ) );
         JSONArray attributeArrayJSON;
         String [] attributeArray = new String[ NUM_ATTRIB ];
 
@@ -39,7 +41,7 @@ public class plantDatabase extends Activity
             }
 
             plants.add( new plant( attributeArray ) );
-            plants.get( plants.size()-1 ).setImage( assetManager );
+            //NOTE: Plant images are only attached to the plant object when the plant is a result of a search. This is necessary to preserve memory
         }
     }
 
@@ -73,8 +75,6 @@ public class plantDatabase extends Activity
             }catch (Exception e)
             {
                 throw new Exception( "The following parse error occured on plant #" + i + "\n" + e.getMessage() );
-                //Log.d("---- PARSE ERROR ----", " The following parse error occured on plant #" + i);
-                //Log.d("---- PARSE ERROR ----", e.getMessage() );
             }
         }
     }
@@ -121,6 +121,11 @@ public class plantDatabase extends Activity
                 i = i % plants.size();
 
         }while( i != startLocation);
+
+        for( rankedPlant p : ranks)
+            p.getPlant().setImage(assetManager);
+
+        Collections.reverse( ranks ); //ascending -> descending
 
         return ranks;
     }
