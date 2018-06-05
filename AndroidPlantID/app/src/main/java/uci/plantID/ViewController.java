@@ -29,6 +29,7 @@ class ViewController {
     private static final int QUESTION_FLOWER_COLOR = index++;
     private static final int QUESTION_FLOWER_SYMMETRY = index++;
     private static final int ACTIVITY_RESULTS = index++;
+    private static final String[] questions = {"What is the Plant Group?", "What is the Leaf Shape?", "What is the Leaf Arrangement?", "What is the Growth Form?", "Is there a Flower?", "What Color is the Flower?"};
     private View[] layouts = new View[index];
     private Vector<ArrayList<View>> queries = new Vector<>(index);
     private int layout_counter = 0;
@@ -288,6 +289,7 @@ class ViewController {
         TextView title = result.findViewById(R.id.question_title);
         if (title != null){
             title.setText(chooseQuestionTitle(layout_index));
+            // title.setTextSize( (float) (title.getTextSize() * 1.2) ); // Still working on this
         }
         else {
             Log.d(String.valueOf(layout_index), "ViewController::buildLayout_ question title not found");
@@ -341,25 +343,25 @@ class ViewController {
     private String chooseQuestionTitle(int layout_index){
         String result;
         if (layout_index == QUESTION_PLANT_GROUP){
-            result = "Plant Group";
+            result = questions[0];
         }
         else if (layout_index == QUESTION_LEAF_SHAPE){
-            result = "Leaf Shape";
+            result = questions[1];
         }
         else if (layout_index == QUESTION_LEAF_ARRANGEMENT){
-            result = "Leaf Arrangement";
+            result = questions[2];
         }
         else if (layout_index == QUESTION_PLANT_GROWTH_FORM){
-            result = "Plant Growth Form";
+            result = questions[3];
         }
         else if (layout_index == QUESTION_HAS_FLOWER){
-            result = "Does the Plant Have a Flower?";
+            result = questions[4];
         }
         else if (layout_index == QUESTION_FLOWER_COLOR){
-            result = "Flower Color";
+            result = questions[5];
         }
         else if (layout_index == QUESTION_FLOWER_SYMMETRY){
-            result = "Flower Symmetry";
+            result = questions[6];
         }
         else{
             result = "";
