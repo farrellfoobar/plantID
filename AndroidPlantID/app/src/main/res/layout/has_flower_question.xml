@@ -31,7 +31,10 @@
             android:id="@+id/switch1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Has a flower?" />
+            android:text="Does the plant have a flower?"
+            android:textSize="8pt"
+            />
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

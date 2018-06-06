@@ -85,6 +85,7 @@ public class PlantCardCompact extends CardView{
     public void setName(String name){
         trait_name.setText(name);
         trait_name.setTextSize(dpToPx(8));
+        trait_name.setTextColor( getResources().getColor(R.color.black) );
     }
 
     public View getTextView(){

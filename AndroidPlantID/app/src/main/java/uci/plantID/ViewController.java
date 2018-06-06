@@ -3,11 +3,13 @@ package uci.plantID;
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -29,7 +31,7 @@ class ViewController {
     private static final int QUESTION_FLOWER_COLOR = index++;
     private static final int QUESTION_FLOWER_SYMMETRY = index++;
     private static final int ACTIVITY_RESULTS = index++;
-    private static final String[] questions = {"What is the Plant Group?", "What is the Leaf Shape?", "What is the Leaf Arrangement?", "What is the Growth Form?", "Is there a Flower?", "What Color is the Flower?"};
+    private static final String[] questions = {"What is the Plant Group?", "What is the Leaf Shape?", "What is the Leaf Arrangement?", "What is the Growth Form?", "Is there a Flower?", "What Color is the Flower?", "What is the Flower Symmetry?"};
     private View[] layouts = new View[index];
     private Vector<ArrayList<View>> queries = new Vector<>(index);
     private int layout_counter = 0;
@@ -115,36 +117,40 @@ class ViewController {
         }
         LinearLayout plant_container;
         ScrollView plant_image_scroll;
+        HorizontalScrollView plant_image_scroll_horizonal;
         LinearLayout plant_image_scroll_container;
         ImageView plant_image;
         TextView plant_name;
         TextView plant_rank;
         ArrayList<rankedPlant> results = db.getGreatestMatch(plant_query, num_ranked_plants);
-        for (rankedPlant plant : results){
+        for (rankedPlant plant : results)
+        {
             plant_container = new LinearLayout(activity);
             plant_name = new TextView(activity);
             plant_rank = new TextView(activity);
             plant_image_scroll = new ScrollView(activity);
+            plant_image_scroll_horizonal = new HorizontalScrollView(activity);
             plant_image_scroll_container = new LinearLayout(activity);
+            plant_image_scroll_container.setHorizontalScrollBarEnabled( true );
 
             plant_container.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             plant_image_scroll.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             plant_container.setOrientation(LinearLayout.VERTICAL);
             plant_image_scroll_container.setOrientation(LinearLayout.HORIZONTAL);
 
-            plant_name.setText(plant.getPlant().getCommonName());
-            plant_rank.setText(String.valueOf( String.format( "%.2f", plant.getRank() ) ));
+            // some plants dont have a common name
+            if( !plant.getPlant().getCommonName().equals("") )
+                plant_name.setText(plant.getPlant().getScientificName() + " A.K.A " + plant.getPlant().getCommonName());
+            else
+                plant_name.setText(plant.getPlant().getScientificName() );
+
+            plant_name.setTextColor( ContextCompat.getColor( activity, R.color.black ) );
+            plant_rank.setText( String.valueOf( String.format( "%.2f", plant.getRank() ) ) + "% match" + "\n\n");
+            plant_rank.setTextColor( ContextCompat.getColor( activity, R.color.black ) );
             plant_image = new ImageView(activity);
             plant_image.setLayoutParams(new LinearLayout.LayoutParams(400,400));
             plant_image.setScaleType(ImageView.ScaleType.FIT_CENTER);
             plant_image.setAdjustViewBounds(true);
-            //plant_image.setImageResource(R.drawable.ic_launcher_background); trying to remove placeholder image
-            //plant_image_scroll_container.addView(plant_image);
-
-            //This should be removed before we deliver because it will make us search for the images twice
-            if (plant.getPlant().getImage().isEmpty()){
-                Log.d("", "plant image array is empty");
-            }
 
             for (Drawable image : plant.getPlant().getImage()){
                 plant_image = new ImageView(activity);
@@ -155,8 +161,8 @@ class ViewController {
                 plant_image_scroll_container.addView(plant_image);
             }
 
-
-            plant_image_scroll.addView(plant_image_scroll_container);
+            plant_image_scroll_horizonal.addView(plant_image_scroll_container);
+            plant_image_scroll.addView(plant_image_scroll_horizonal);
             plant_container.addView(plant_image_scroll);
             plant_container.addView(plant_name);
             plant_container.addView(plant_rank);
@@ -289,7 +295,6 @@ class ViewController {
         TextView title = result.findViewById(R.id.question_title);
         if (title != null){
             title.setText(chooseQuestionTitle(layout_index));
-            // title.setTextSize( (float) (title.getTextSize() * 1.2) ); // Still working on this
         }
         else {
             Log.d(String.valueOf(layout_index), "ViewController::buildLayout_ question title not found");

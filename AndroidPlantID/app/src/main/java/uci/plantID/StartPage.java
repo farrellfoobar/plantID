@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.util.Scanner;
 
 
 public class StartPage extends AppCompatActivity
@@ -65,6 +68,36 @@ public class StartPage extends AppCompatActivity
     public void nextButton(View view){
         control.nextButton(this, view, queryPlant, db);
 
+    }
+
+    public void creditsButton(View view)
+    {
+        setContentView(R.layout.credits_page);
+        TextView tv = (TextView)findViewById(R.id.creditsContent);
+
+        Scanner scanner = null;
+        String credits = "";
+
+        try
+        {
+            scanner = new Scanner( getAssets().open("credits.txt") );
+            scanner.useDelimiter("\n");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        while( scanner.hasNext() )
+            credits += scanner.next() + "\n";
+
+        tv.setText( credits );
+        tv.setTextSize( (float) 0.25 * tv.getTextSize() );
+    }
+
+    public void creditsBackButton(View view)
+    {
+        setContentView(R.layout.activity_start_page);
     }
 
     public void backButton(View view){
