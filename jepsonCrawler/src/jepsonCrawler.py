@@ -1,9 +1,12 @@
 from urllib.request import urlopen
-import logging
+import urllib
+import pickle
+import os
+import threading
 
 TAXON_URL = 'http://ucjeps.berkeley.edu/eflora/eflora_display.php?tid='
 START = '10025'
-MAX_TAXA_TO_CRAWL = 30
+MAX_TAXA_TO_CRAWL = 100000
 
 ATTRIBUTES = {
     "Plant Group"       : ["Tree", "Grass", "Shrub", "Forb", "Succulent"],
@@ -22,10 +25,10 @@ SYNONYMS = {
     "Succulent": ["succulent"],
     "Simple": ["simple"],
     "Lobed": ["lobed"],
-    "Pinnate": ["pinnate", "pinnately"],
-    "Compound/Deeply divided": ["compound", "divided"],
+    "Pinnate": ["pinnate"],
+    "Compound/Deeply divided": ["compound"],
     "blade": ["blade"],
-    "Alternate": ["alternate", "alternately"],
+    "Alternate": ["alternate"],
     "Opposite": ["opposite"],
     "Bundled": ["bundled"],
     "Whorled": ["whorled"],
@@ -36,7 +39,7 @@ SYNONYMS = {
     "ascending": ["ascending"],
     "erect": ["erect"],
     "mat": ["mat"],
-    "clump-forming": ["clump-forming", "clump", "clump"],
+    "clump-forming": ["clump-forming", "clump"],
     "rosette": ["rosette"],
     "basal": ["basal"],
     "vine": ["vine"],
@@ -50,30 +53,79 @@ SYNONYMS = {
     "pink": ["pink", "pinkish"],
     "radial": ["radial"],
     "bilateral": ["bilateral"],
-    "asymmetrical": ["asymmetrical", "asymmetrically"]
+    "asymmetrical": ["asymmetrical"]
 }
 
-def main():
-    alist = iterate_taxa()
 
-    for x in alist:
-        print(x)
+def main():
+    plant_nums = load_obj('plant_nums')
+    taxa_info = load_obj('taxa_info')
+
+    threadlist = [None]*118
+    plant_num_cur = 0
+
+    while plant_num_cur < len(plant_nums):
+        for x in range(len(threadlist)):
+            if threadlist[x] is None or not threadlist[x].is_alive():
+                print( str(plant_num_cur) + "/" + str(len(plant_nums)))
+                print(str(int(100 * plant_num_cur / len(plant_nums))) + "% complete")
+                if not os.path.isdir('E:\\jepsonCrawlerOutput\\' + taxa_info[plant_num_cur][0]):
+                    threadlist[x] = threading.Thread(target=write_images_from_num,
+                                                     args=(plant_nums[plant_num_cur], taxa_info[plant_num_cur]))
+                    print('spawning a new thread to process: ' + taxa_info[plant_num_cur][0])
+                    threadlist[x].start()
+
+                plant_num_cur += 1
+
+def write_images_from_num(num, plant_info):
+    html = get_html(num)
+    img_string = r'http://calphotos.berkeley.edu/imgs/'
+    key_len = len('XXXX/XXXX')
+
+    try:
+        os.makedirs('E:\\jepsonCrawlerOutput\\' + plant_info[0])
+    except: pass
+
+    cur = 0
+    i = 0
+    index = html.find(img_string, cur)
+    while index != -1:
+        start_key_index = index + len('http://calphotos.berkeley.edu/imgs/128x192/0000_0000/')
+        key = html[start_key_index:start_key_index+key_len]
+        img_to_get = 'https://calphotos.berkeley.edu/imgs/512x768/0000_0000/' + key + '.jpeg'
+
+        try:
+            urllib.request.urlretrieve(img_to_get, 'E:\\jepsonCrawlerOutput\\' + plant_info[0] + '\\' + str(i) + '.jpeg')
+        except Exception as e:
+            print(img_to_get)
+            print(e)
+            print('')
+
+        i+=1
+        cur = index+1
+        index = html.find(img_string, cur)
 
 def iterate_taxa():
     taxa_info = list()
     taxon_number = START
+    plant_nums = list()
 
     try:
         count = 0
         while count < MAX_TAXA_TO_CRAWL:
             html = get_html(taxon_number)
-
+            plant_nums.append(taxon_number)
             taxa_info.append(get_attribs_from_html(html))
-
             taxon_number = get_next_taxon_number(html)
             count += 1
-    except StopIteration:
-        pass  # ignore
+            if count % 100 == 0:
+                print(100 * count / 9950)
+                save_obj(taxa_info, "taxa_info")
+                save_obj(plant_nums, "plant_nums")
+
+    except Exception:
+        save_obj(taxa_info, "taxa_info")
+        save_obj(plant_nums, "plant_nums")
 
     return taxa_info
 
@@ -108,14 +160,23 @@ def get_attribs_from_html(html):
                 if synonyms in section:
                     next_attrib.append(value)
 
-        out.append(str(next_attrib)) # we cast to str to look like json
+        out.append( next_attrib )
 
     return out
 
+# https://stackoverflow.com/questions/19201290/how-to-save-a-dictionary-to-a-file
+def save_obj(obj, name):
+    with open(r'C:\Users\Farrell12\Desktop\jepsonCrawlerOutput\\' + name + '.pkl', 'wb') as f:
+        pickle.dump(obj, f, pickle.HIGHEST_PROTOCOL)
+
+
+def load_obj(name):
+    with open(r'C:\Users\Farrell12\Desktop\jepsonCrawlerOutput\\' + name + '.pkl', 'rb') as f:
+        return pickle.load(f)
+
 
 def get_html(taxon_number):
-    logging.info("trying to open: " + TAXON_URL + taxon_number)
-    response = urlopen(TAXON_URL + taxon_number)
+    response = urlopen(TAXON_URL + str(taxon_number))
     html = str(response.read())
 
     html = html.replace(get_text_between(html, 'div id="familydesc"', '</blockquote></div>'), "")

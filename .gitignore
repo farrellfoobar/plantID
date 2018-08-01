@@ -6,3 +6,6 @@ AndroidPlantID/.idea/*
 /build
 /captures
 .externalNativeBuild
+
+jepsonCrawler/*
+!jepsonCrawler/src
