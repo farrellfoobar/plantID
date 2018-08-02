@@ -2,10 +2,13 @@ from urllib.request import urlopen
 import urllib
 import pickle
 import os
-import threading
+from multiprocessing import Pool
+import time
+import random
 
 TAXON_URL = 'http://ucjeps.berkeley.edu/eflora/eflora_display.php?tid='
 START = '10025'
+OUTPUT_FILE = 'E:\\jepsonCrawlerOutput'
 MAX_TAXA_TO_CRAWL = 100000
 
 ATTRIBUTES = {
@@ -17,6 +20,7 @@ ATTRIBUTES = {
     "Flower Symmetry"   : ["radial", "bilateral", "asymmetrical"]
 }
 
+# NOTE: If the key is found but not its synonym then the key is not registered
 SYNONYMS = {
     "Tree": ["tree"],
     "Grass": ["grass"],
@@ -56,46 +60,55 @@ SYNONYMS = {
     "asymmetrical": ["asymmetrical"]
 }
 
+plant_nums = list()
 
 def main():
     plant_nums = load_obj('plant_nums')
     taxa_info = load_obj('taxa_info')
 
-    threadlist = [None]*118
-    plant_num_cur = 0
+    download_plant_images(plant_nums, taxa_info)
 
-    while plant_num_cur < len(plant_nums):
-        for x in range(len(threadlist)):
-            if threadlist[x] is None or not threadlist[x].is_alive():
-                print( str(plant_num_cur) + "/" + str(len(plant_nums)))
-                print(str(int(100 * plant_num_cur / len(plant_nums))) + "% complete")
-                if not os.path.isdir('E:\\jepsonCrawlerOutput\\' + taxa_info[plant_num_cur][0]):
-                    threadlist[x] = threading.Thread(target=write_images_from_num,
-                                                     args=(plant_nums[plant_num_cur], taxa_info[plant_num_cur]))
-                    print('spawning a new thread to process: ' + taxa_info[plant_num_cur][0])
-                    threadlist[x].start()
+def download_plant_images(plant_nums, taxa_info):
+    args = list()
+    for x in range(len(plant_nums)):
+        args.append([plant_nums[x], taxa_info[x][0], x/len(plant_nums)])
 
-                plant_num_cur += 1
+    if __name__ == '__main__':
+        thread_pool = Pool(10)
+        thread_pool.map(write_images_from_num, args)
 
-def write_images_from_num(num, plant_info):
-    html = get_html(num)
-    img_string = r'http://calphotos.berkeley.edu/imgs/'
-    key_len = len('XXXX/XXXX')
+def write_images_from_num(num_and_plant_name):
+    num = num_and_plant_name[0]
+    plant_name = num_and_plant_name[1]
+    prog = num_and_plant_name[2]
+
+    print('Proccessing plant#: ' + str(num))
+    print('{0:.2%} done'.format(prog))
 
     try:
-        os.makedirs('E:\\jepsonCrawlerOutput\\' + plant_info[0])
+        html = get_html(num)
+    except urllib.error.HTTPError as e:
+        raise e
+
+    img_string = r'http://calphotos.berkeley.edu/imgs/'
+    key_len = len('0000_0000/0000/0000')
+
+    try:
+        os.makedirs(OUTPUT_FILE + os.sep + plant_name)
     except: pass
 
     cur = 0
     i = 0
     index = html.find(img_string, cur)
     while index != -1:
-        start_key_index = index + len('http://calphotos.berkeley.edu/imgs/128x192/0000_0000/')
+        start_key_index = index + len('http://calphotos.berkeley.edu/imgs/128x192/')
         key = html[start_key_index:start_key_index+key_len]
-        img_to_get = 'https://calphotos.berkeley.edu/imgs/512x768/0000_0000/' + key + '.jpeg'
+        img_to_get = 'https://calphotos.berkeley.edu/imgs/512x768/' + key + '.jpeg'
 
         try:
-            urllib.request.urlretrieve(img_to_get, 'E:\\jepsonCrawlerOutput\\' + plant_info[0] + '\\' + str(i) + '.jpeg')
+            img_name = OUTPUT_FILE + os.sep + plant_name + '\\' + str(i) + '.jpeg'
+            if not os.path.isfile(img_name):
+                urllib.request.urlretrieve(img_to_get, img_name)
         except Exception as e:
             print(img_to_get)
             print(e)
@@ -164,19 +177,38 @@ def get_attribs_from_html(html):
 
     return out
 
-# https://stackoverflow.com/questions/19201290/how-to-save-a-dictionary-to-a-file
+
 def save_obj(obj, name):
-    with open(r'C:\Users\Farrell12\Desktop\jepsonCrawlerOutput\\' + name + '.pkl', 'wb') as f:
+    with open(OUTPUT_FILE + os.sep + name + '.pkl', 'wb') as f:
         pickle.dump(obj, f, pickle.HIGHEST_PROTOCOL)
 
 
 def load_obj(name):
-    with open(r'C:\Users\Farrell12\Desktop\jepsonCrawlerOutput\\' + name + '.pkl', 'rb') as f:
+    with open(OUTPUT_FILE + os.sep + name + '.pkl', 'rb') as f:
         return pickle.load(f)
 
 
 def get_html(taxon_number):
-    response = urlopen(TAXON_URL + str(taxon_number))
+    max_retries = 10
+    try:
+        response = urlopen(TAXON_URL + str(taxon_number))
+    except urllib.error.HTTPError as e:
+        if e.code == 403:
+            tries = 1
+            while tries < max_retries:
+                print("403 Error while handeling url: " + TAXON_URL + str(taxon_number) + " Retrying in a few seconds.")
+                time.sleep(random.randint(3, 15))
+                response = urlopen(TAXON_URL + str(taxon_number))
+                tries+=1
+
+            if tries == max_retries:
+                raise e
+
+        elif e.code == 404:
+            print("HTTP Error 404 on url: " + TAXON_URL + str(taxon_number))
+        else:
+            raise e
+
     html = str(response.read())
 
     html = html.replace(get_text_between(html, 'div id="familydesc"', '</blockquote></div>'), "")
@@ -191,6 +223,7 @@ def get_taxon_name(html):
 
 def get_taxon_common_name(html):
     return get_text_between(html, r'<span align =\'center\' class=\'pageMajorHeading\'>', '<')
+
 
 def get_next_taxon_number(html):
     end_of_next_taxon_url = html.find('"><IMG SRC="http://ucjeps.berkeley.edu/icons/right.gif" BORDER=2 ALT="Next taxon">')
